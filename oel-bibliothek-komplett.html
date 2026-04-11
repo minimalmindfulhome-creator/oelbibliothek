@@ -282,17 +282,22 @@
 
 <div class="footer">✦ minimalmindfulhome.blog ✦ Persönliche Bibliothek — nicht zur Weitergabe als medizinische Beratung · Inhalte teilweise adaptiert aus @dropintowellness</div>
 
-<script>function showSection(id, btn) {
+<script>
+// ===== NAVIGATION =====
+function showSection(id, btn) {
   document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
   document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
   document.getElementById(id).classList.add('active');
   btn.classList.add('active');
 }
+
 function highlight(text, term) {
   if (!term || !text) return text || '';
   const r = new RegExp(`(${term.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')})`, 'gi');
   return String(text).replace(r, '<mark>$1</mark>');
 }
+
+// ===== DATA: ÖLE =====
 const oils = [
   { name:"Abundance", emoji:"✨", aroma:"Warm, holzig, leicht süßlich-würzig", wirkung:"Weckt Energie für neue Vorhaben, fördert Zuversicht und ein Gefühl von Fülle. Emotional aktivierend ohne aufzudrehen. Hilft, Blockaden und 'Mangel-Denken' loszulassen.", anwendung:"Diffusor (3–4 Tr.), topisch auf Handgelenke/Herzchakra verdünnt, als Raumspray. Nicht für Kinder unter 6 Jahren.", blends:["Frankincense + Orange","Lavender + Vetiver","Idaho Grand Fir + Lemon"], contentIdeen:"Post: 'Das Öl, das ich im Homeoffice trage, wenn ich an großen Projekten arbeite.' Blog: Rituale für einen bewussten Arbeitstag. Story: Morgenritual mit Diffusorblend.", zielgruppe:"Frauen, die etwas aufbauen oder verändern wollen. Ideal für Gründerinnen, Berufseinsteigerinnen, Wiedereinsteigerinnen.", saison:"Ganzjährig – besonders stark im Januar (Neustart) und Herbst (Ernte-Energie). Stimmung: Fokus, Aufbruch, Büro.", tags:["energie","morgens","diffusor"] },
   { name:"Christmas Spirit", emoji:"🌲", aroma:"Weihnachtlich-würzig: Zimt, Weißtanne, Orange", wirkung:"Wärmt emotional, weckt Kindheitserinnerungen und Geborgenheitsgefühl. Stimmungsaufhellend, festlich, verbindend.", anwendung:"Diffusor (3–4 Tr.) – Klassiker für die Adventszeit. Topisch stark verdünnt (Zimt ist ein 'heißes' Öl). Nie unverdünnt auf die Haut.", blends:["Orange + Cinnamon Roll","Idaho Grand Fir + Vanilla","Pine + Orange"], contentIdeen:"Post: 'Weihnachten fängt für mich mit diesem Duft an.' Adventskalender-Content. Blog: Festliche Diffusorblends ohne Duftkerze.", zielgruppe:"Alle, die bewusste Weihnachtsmomente schaffen wollen. Familien, Slow-Living-Fans.", saison:"November–Januar. Stimmung: Advent, Zuhause, Gemütlichkeit.", tags:["herbst-winter","diffusor","entspannung"], safety:"Enthält Zimt – heißes Öl. Topisch nur sehr stark verdünnt (1% oder weniger). Nicht für Kleinkinder." },
@@ -346,6 +351,7 @@ const oils = [
     saison:"Ganzjährig. Stimmung: Selbstfürsorge, Morgenritual, Weiblichkeit, Balance.",
     tags:["morgens","entspannung","frühling-sommer"],
     safety:"Nicht in der Schwangerschaft oder Stillzeit ohne ärztliche Rücksprache. Nicht für Kinder. Enthält Nelke (heißes Öl) — immer verdünnt anwenden. Enthält Bergamot — Sonne nach Auftragen meiden." },
+
   { name:"Australian Blue", emoji:"🦋", aroma:"Exotisch-blumig-frisch: Blue Cypress, Ylang Ylang, Geranium, Grapefruit, Jasmin, Rose, Spearmint — ein einzigartiger 16-Öl-Blend",
     wirkung:"Upliftend und gleichzeitig tief erdend und stabilisierend. Stärkt das Wohlbefinden und ein Gefühl von Schutz. Körperlich: hautpflegend, Stimmungsregulierung. Emotional: hebt den Geist, fördert innere Stärke, Klarheit und spirituelle Verbindung. Wirkt beruhigend bei innerer Aufgewühltheit.",
     anwendung:"Diffusor (2–3 Tr. — sehr intensiv!), topisch verdünnt auf Handgelenke, Herzbereich, Schläfen. Für Meditation und Selbstreflexion. Verdünnung empfohlen für empfindliche Haut.",
@@ -355,6 +361,7 @@ const oils = [
     saison:"Ganzjährig. Stimmung: Meditation, innere Stärke, spirituelle Momente, ruhige Abende.",
     tags:["abends","entspannung","diffusor"],
     safety:"Enthält Blue Tansy — sparsam dosieren, sehr intensiv. Topisch verdünnen." },
+
   { name:"White Forest", emoji:"🌨️", aroma:"Süß-frisch-holzig: Weißtanne, Weißkiefer, Weißzeder, Weißfichte — wie ein Winterwald nach dem ersten Schnee",
     wirkung:"Verbindet mit der Stille und Reinheit der Natur. Fördert Balance, Klarheit und inneren Frieden. Körperlich: atemunterstützend, belebend. Emotional: beruhigend, erfrischend, klärt Gedanken. Leichter und süßer als andere Nadelbaumöle.",
     anwendung:"Diffusor (3–5 Tr.), direktes Einatmen, topisch verdünnt auf Brust oder Nacken. Ideal für Meditation und Yoga. Auch gut in Massage-Blends mit Trägeröl.",
@@ -363,6 +370,7 @@ const oils = [
     zielgruppe:"Naturliebhaberinnen, Winterfans, alle die Waldbaden lieben. Meditationsinteressierte.",
     saison:"Herbst/Winter, besonders Advent. Stimmung: Winterstille, Reinheit, Geborgenheit, Natur.",
     tags:["herbst-winter","entspannung","diffusor"] },
+
   { name:"Myrtle", emoji:"🍃", aroma:"Frisch-krautig, leicht kampferartig, eukalyptus-ähnlich — sanfter und blumiger als Tea Tree",
     wirkung:"Sanfte Alternative zu Tea Tree. Hautpflegend, klärend, antibakteriell. Körperlich: unterstützt Atemwege (Husten, Erkältung), Haut (Akne, Poren), Haargesundheit. Emotional: uplifting, euphorisch, balancierend — hilft männliche und weibliche Energien ins Gleichgewicht zu bringen. Befreiend durch den Atem.",
     anwendung:"Diffusor (3–4 Tr., max. 30 Min.), topisch verdünnt 1:1 auf Haut, Brust oder Nacken. In Hautpflegeprodukten, Haarspülung. Enthält auch Purification und R.C.-Blends.",
@@ -371,27 +379,40 @@ const oils = [
     zielgruppe:"Frauen mit Interesse an Hautpflege, alle mit Atemwegsproblemen, alle die natürlich reinigen wollen.",
     saison:"Ganzjährig. Stimmung: Reinigung, Hautpflege, Frühling, Atemwege.",
     tags:["diffusor","frühling-sommer"] },
-  { name:"Grapefruit", emoji:"🍊", aroma:"Frisch-zitronig, leicht bitter, strahlend", wirkung:"Entgiftend, stimmungsaufhellend, appetitzügelnd. Regt Lymphe und Stoffwechsel an.", anwendung:"Diffusor (4–5 Tr.), topisch verdünnt (Massageöl für Beine), Raumspray. Photosensibilisierend.", blends:["Lime + Lemon","Slique Essence + Lemon","Pink Champagne + Mint"], contentIdeen:"Post: 'Das Öl, das meine Morgendusche zum Erlebnis macht.' Blog: Frühlingskur mit ätherischen Ölen.", zielgruppe:"Frauen mit Interesse an Entgiftung, Leichtigkeit, Frühling.", saison:"Frühling/Sommer. Stimmung: Leichtigkeit, Energie, Entgiftung.", tags:["morgens","energie","diffusor","frühling-sommer"], safety:"Photosensibilisierend bei topischer Anwendung." }
+
+  { name:"Grapefruit", emoji:"🍊", aroma:"Frisch-zitronig, leicht bitter, strahlend", wirkung:"Entgiftend, stimmungsaufhellend, appetitzügelnd. Regt Lymphe und Stoffwechsel an.", anwendung:"Diffusor (4–5 Tr.), topisch verdünnt (Massageöl für Beine), Raumspray. Photosensibilisierend.", blends:["Lime + Lemon","Slique Essence + Lemon","Pink Champagne + Mint"], contentIdeen:"Post: 'Das Öl, das meine Morgendusche zum Erlebnis macht.' Blog: Frühlingskur mit ätherischen Ölen.", zielgruppe:"Frauen mit Interesse an Entgiftung, Leichtigkeit, Frühling.", saison:"Frühling/Sommer. Stimmung: Leichtigkeit, Energie, Entgiftung.", tags:["morgens","energie","diffusor","frühling-sommer"], safety:"Photosensibilisierend bei topischer Anwendung." },
+
+  { name:"Bergamotte", emoji:"🫐", aroma:"Frisch-zitronig, leicht blumig, pudrig-warm — eleganter als Lemon, sonniger als Lavendel", wirkung:"Stimmungsaufhellend, angstlösend, emotional ausgleichend. Körperlich: antiseptisch, hautpflegend. Emotional: löst emotionale Blockaden, fördert Selbstakzeptanz und Leichtigkeit. Einer der wirksamsten natürlichen Stimmungshelfer.", anwendung:"Diffusor (3–4 Tr.), topisch verdünnt auf Handgelenke oder Herzbereich, Raumspray. Wunderbar als Parfüm-Basis — verbindet sich mit fast allem.", blends:["Joy + Lavender","Frankincense + Ylang Ylang","Lime + Geranium"], contentIdeen:"Post: 'Das Öl, das meinen Morgen leichter macht — und ich meine das ernst.' Blog: Stimmungsöle die wirklich helfen. Story: Bergamotte im Diffusor bei grauen Tagen.", zielgruppe:"Frauen mit Stimmungstiefs oder innerer Anspannung, Stressgeplagte, breite emotionale Ansprache. Einsteigerinnen.", saison:"Ganzjährig, besonders Frühling. Stimmung: Leichtigkeit, Selbstfürsorge, gute Laune, Morgenritual.", tags:["morgens","energie","diffusor","frühling-sommer"], safety:"YL Bergamotte ist dampfdestilliert — geringeres Photosensibilisierungsrisiko als kaltgepresste Bergamotte. Trotzdem bei topischer Anwendung auf sonnenexponierten Stellen Vorsicht." },
+
+  { name:"Northern Lights Black Spruce", emoji:"🌌", aroma:"Frisch-tannennadelig, süßlich-holzig, leicht harzig — voller und wärmer als gewöhnliche Fichte", wirkung:"Erdend und upliftend zugleich. Körperlich: atemunterstützend, immunstärkend, muskelentspannend (topisch). Emotional: fördert innere Stärke, Ausgeglichenheit und tiefes Durchatmen. Ideal nach intensiven Tagen.", anwendung:"Diffusor (3–5 Tr.), direktes Einatmen, topisch auf Brust, Nacken oder Fußsohlen verdünnt. Gut für Morgenritual oder Meditation.", blends:["Idaho Grand Fir + Frankincense","Valor + Lavender","Cedarwood + Vetiver"], contentIdeen:"Post: 'Das Öl, das ich jetzt jeden Morgen einatme — und warum das kein Zufall ist.' Blog: Nadelbaum-Öle für Atemwege und innere Ruhe. Story: Wintermorgen-Diffusor ohne Duftkerze.", zielgruppe:"Naturliebhaberinnen, Frauen mit Atemwegsproblemen, alle die Wald- und Bergluft zuhause wollen.", saison:"Herbst/Winter, Ganzjährig. Stimmung: Wald, innere Stärke, Reinheit, Atemraum.", tags:["morgens","energie","diffusor","herbst-winter"] },
+
+  { name:"Cedarwood", emoji:"🌳", aroma:"Warm-holzig, balsamisch, leicht rauchig, samtig geerdet — wie ein alter Wald", wirkung:"Beruhigend, schlaffördernd, tief erdend. Körperlich: fördert Haarwachstum (topisch auf Kopfhaut), hautpflegend. Emotional: gibt Sicherheit, Schutz und Geborgenheit. Senkt nachweislich Cortisol und beruhigt das Nervensystem.", anwendung:"Diffusor (3–4 Tr.) abends, topisch auf Fußsohlen vor dem Schlafengehen, 1–2 Tr. ins Trägeröl für Kopfhaut-Massage.", blends:["Lavender + Frankincense (Schlaf)","Vetiver + Orange (Erdung)","Northern Lights Black Spruce + Pine (Wald)"], contentIdeen:"Post: 'Das Öl, das mir beim Einschlafen wirklich hilft — nach Monaten des Ausprobierens.' Blog: Meine Abendroutine für tiefen Schlaf. Story: Fußsohlen-Ritual vor dem Schlafen.", zielgruppe:"Frauen mit Schlafproblemen oder chronischem Stress, Naturkosmetik-Interessierte (Haarpflege). Breite emotionale Ansprache.", saison:"Herbst/Winter. Stimmung: Schlaf, Geborgenheit, Tiefe, Schutz, Wald.", tags:["abends","entspannung","diffusor","herbst-winter"] }
 ];
+
+// ===== DATA: BLENDS =====
 const blends = [
+  // MORGEN & ENERGIE
   { name:"Sonnensturm", kat:"morgen", quelle:"Blend-Bibliothek", stimmung:"frisch · weckend", beschreibung:"Zitruspower für einen energiegeladenen Start in den Tag.", oils:[{n:"Grapefruit",a:6,d:7},{n:"Lemon",a:4,d:5},{n:"Peppermint",a:3,d:4}], hinweise:"Morgensonne pur. Sofort wach." },
   { name:"Waldmorgen", kat:"morgen", quelle:"Blend-Bibliothek", stimmung:"frisch · klärend", beschreibung:"Waldluft trifft Klarheit — wie ein Spaziergang vor dem Kaffee.", oils:[{n:"Idaho Grand Fir",a:5,d:6},{n:"Pine",a:5,d:6},{n:"Rosemary",a:4,d:5}], hinweise:"Erdend & belebend zugleich." },
   { name:"En-R-Gee Kick", kat:"morgen", quelle:"Blend-Bibliothek", stimmung:"energetisch", beschreibung:"Das Energie-Blend mit Zitrusunterstützung — für schwierige Morgenstunden.", oils:[{n:"En-R-Gee",a:6,d:7},{n:"Lemon",a:4,d:5},{n:"Orange",a:4,d:5}], hinweise:"Ideal vor Sport oder langen Arbeitstagen." },
   { name:"Klarer Kopf", kat:"morgen", quelle:"Blend-Bibliothek", stimmung:"mental · fokussiert", beschreibung:"Clarity führt, Pfefferminze weckt, Lemon hellt auf.", oils:[{n:"Clarity",a:6,d:7},{n:"Peppermint",a:4,d:5},{n:"Lemon",a:4,d:5}], hinweise:"Perfekt zum Journaling oder Morgenplanung." },
   { name:"Citrus Fiesta", kat:"morgen", quelle:"Blend-Bibliothek", stimmung:"beschwingt · fröhlich", beschreibung:"Drei Zitrusöle, die den Raum sofort aufhellen.", oils:[{n:"Orange",a:6,d:7},{n:"Lime",a:4,d:5},{n:"Grapefruit",a:4,d:5}], hinweise:"Hellt auch graue Tage auf." },
   { name:"New Day", kat:"morgen", quelle:"Blend-Bibliothek", stimmung:"aufbauend · klar", beschreibung:"New Heights hebt die Stimmung — Rosmarin & Lemon stärken die Klarheit.", oils:[{n:"New Heights",a:6,d:7},{n:"Rosemary",a:4,d:5},{n:"Lemon",a:4,d:5}], hinweise:"Sanft aber wirkungsvoll." },
+  // FOKUS & ARBEIT
   { name:"Deep Work", kat:"fokus", quelle:"Blend-Bibliothek", stimmung:"konzentriert", beschreibung:"Die klassische Fokus-Kombi: klärend, erdend, belebend.", oils:[{n:"Rosemary",a:6,d:7},{n:"Frankincense",a:4,d:5},{n:"Peppermint",a:4,d:5}], hinweise:"Für Schreibtischarbeit & kreative Sessions." },
   { name:"Scholar", kat:"fokus", quelle:"Blend-Bibliothek", stimmung:"mental · scharf", beschreibung:"Clarity dominiert — ideal für Lernphasen und komplexe Aufgaben.", oils:[{n:"Clarity",a:7,d:9},{n:"Lemon",a:4,d:5},{n:"Rosemary",a:3,d:4}], hinweise:"Bibliotheksatmosphäre für zuhause." },
   { name:"Inspiration Flow", kat:"fokus", quelle:"Blend-Bibliothek", stimmung:"kreativ · offen", beschreibung:"Inspiration-Blend trifft Frankincense-Tiefe und Waldfrische.", oils:[{n:"Inspiration",a:6,d:7},{n:"Frankincense",a:4,d:5},{n:"Idaho Grand Fir",a:4,d:5}], hinweise:"Für kreative Arbeit & Brainstorming." },
   { name:"Atemraum", kat:"fokus", quelle:"Blend-Bibliothek", stimmung:"offen · klar", beschreibung:"Eucalyptus öffnet Kopf und Atemwege — ideal für langes Sitzen.", oils:[{n:"Eucalyptus Globulus",a:6,d:7},{n:"Peppermint",a:4,d:5},{n:"Lemon",a:4,d:5}], hinweise:"Belebt ohne zu überfordern." },
   { name:"Abundance Mindset", kat:"fokus", quelle:"Blend-Bibliothek", stimmung:"positiv · fokussiert", beschreibung:"Abundance setzt die Intention, Frankincense erdet sie.", oils:[{n:"Abundance",a:7,d:9},{n:"Frankincense",a:4,d:5},{n:"Orange",a:3,d:3}], hinweise:"Vor wichtigen Meetings oder Präsentationen." },
   { name:"Grounded Focus", kat:"fokus", quelle:"Blend-Bibliothek", stimmung:"tief · stabil", beschreibung:"Vetiver erdet, Frankincense zentriert, Rosmarin schärft.", oils:[{n:"Vetiver",a:3,d:4},{n:"Frankincense",a:6,d:7},{n:"Rosemary",a:5,d:6}], hinweise:"Vetiver sparsam — sehr intensiv!" },
+  // ENTSPANNUNG & ABEND
   { name:"Feierabend", kat:"abend", quelle:"Blend-Bibliothek", stimmung:"loslassen · warm", beschreibung:"Stress Away leitet den Übergang ein — Lavendel und Frankincense tragen dich.", oils:[{n:"Stress Away",a:7,d:9},{n:"Lavender",a:4,d:5},{n:"Frankincense",a:3,d:4}], hinweise:"Der perfekte Feierabend-Signalgeber." },
   { name:"Blumenstunde", kat:"abend", quelle:"Blend-Bibliothek", stimmung:"floral · sanft", beschreibung:"Geranium und Lavendel mit einem Hauch Rose — feminin und warm.", oils:[{n:"Geranium",a:6,d:7},{n:"Lavender",a:6,d:7},{n:"Rose",a:2,d:3}], hinweise:"Rose sehr intensiv — nur 2–3 Tropfen." },
   { name:"Sanft landen", kat:"abend", quelle:"Blend-Bibliothek", stimmung:"erdend · ruhig", beschreibung:"Grounding führt die Gedanken zur Ruhe, Vetiver vertieft.", oils:[{n:"Grounding",a:7,d:9},{n:"Lavender",a:4,d:5},{n:"Vetiver",a:3,d:3}], hinweise:"Ideal nach einem vollen Tag." },
   { name:"Copaiba Cloud", kat:"abend", quelle:"Blend-Bibliothek", stimmung:"weich · beruhigend", beschreibung:"Copaiba verstärkt Lavendel und Frankincense auf sanfte Art.", oils:[{n:"Copaiba",a:6,d:7},{n:"Lavender",a:6,d:7},{n:"Frankincense",a:3,d:4}], hinweise:"Samtige Abendatmosphäre." },
   { name:"Süße Ruhe", kat:"abend", quelle:"Blend-Bibliothek", stimmung:"warm · geborgen", beschreibung:"Vanille trägt, Lavendel beruhigt, Ylang Ylang gibt Tiefe.", oils:[{n:"Vanilla",a:4,d:5},{n:"Lavender",a:6,d:7},{n:"Ylang Ylang",a:3,d:4},{n:"Copaiba",a:1,d:2}], hinweise:"Ylang Ylang dosieren — sehr blumig." },
   { name:"Elemi Abend", kat:"abend", quelle:"Blend-Bibliothek", stimmung:"meditativ · klar", beschreibung:"Elemi bringt harzige, leicht zitrusige Tiefe — ideal zum Runterkommen.", oils:[{n:"Elemi",a:6,d:7},{n:"Frankincense",a:4,d:5},{n:"Lavender",a:4,d:5}], hinweise:"Wenig bekannt, aber wunderbar." },
+  // SCHLAF
   { name:"Traumzeit", kat:"schlaf", quelle:"Blend-Bibliothek", stimmung:"tief · sanft", beschreibung:"Peace & Calming II + Lavendel — das Klassiker-Duo für ruhige Nächte.", oils:[{n:"Peace & Calming II",a:7,d:9},{n:"Lavender",a:6,d:7},{n:"Vetiver",a:1,d:2}], hinweise:"Vetiver gibt Tiefe ohne zu dominieren." },
   { name:"Nachtruhe", kat:"schlaf", quelle:"Blend-Bibliothek", stimmung:"klassisch · beruhigend", beschreibung:"Lavendel, Majoran und Frankincense — einfach und zuverlässig.", oils:[{n:"Lavender",a:7,d:9},{n:"Marjoram",a:4,d:5},{n:"Frankincense",a:3,d:4}], hinweise:"Majoran unterstützt tiefen Schlaf." },
   { name:"Valor Nacht", kat:"schlaf", quelle:"Blend-Bibliothek", stimmung:"sicher · erdend", beschreibung:"Valor gibt Sicherheit und Stärke — ideal bei innerer Unruhe.", oils:[{n:"Valor",a:6,d:7},{n:"Lavender",a:6,d:7},{n:"Vetiver",a:2,d:4}], hinweise:"Bei innerer Anspannung besonders wirksam." },
@@ -399,12 +420,14 @@ const blends = [
   { name:"Entspannt schlafen", kat:"schlaf", quelle:"Blend-Bibliothek", stimmung:"weich · loslassend", beschreibung:"Stress Away und Majoran nehmen die letzten Gedanken mit.", oils:[{n:"Stress Away",a:7,d:9},{n:"Lavender",a:4,d:5},{n:"Marjoram",a:3,d:4}], hinweise:"Auch als Kissenspray nutzbar." },
   { name:"Ocean Dream (adaptiert)", kat:"schlaf", quelle:"Blend-Bibliothek", stimmung:"sanft · traumhaft", beschreibung:"Adaptiert: Peace & Calming II statt Blue Tansy.", oils:[{n:"Peace & Calming II",a:3,d:4},{n:"Lavender",a:6,d:7},{n:"Vanilla",a:3,d:4}], hinweise:"⚠️ Original: 2–3 Tr. Blue Tansy (nicht in Sammlung)." },
   { name:"Dreamsicle (adaptiert)", kat:"schlaf", quelle:"Blend-Bibliothek", stimmung:"warm · cremig", beschreibung:"Cremig-warmer Abend-Blend. Original: Cedarwood & Tangerine → Idaho Grand Fir & Orange.", oils:[{n:"Frankincense",a:5,d:6},{n:"Idaho Grand Fir",a:4,d:5},{n:"Orange",a:4,d:5},{n:"Vanilla",a:2,d:3}], hinweise:"⚠️ Original: Cedarwood + Tangerine (nicht in Sammlung)." },
+  // EMOTIONALE BALANCE
   { name:"Innerer Frieden", kat:"emotion", quelle:"Blend-Bibliothek", stimmung:"zentriert · still", beschreibung:"Peace & Calming II mit Frankincense — für emotionalen Halt.", oils:[{n:"Peace & Calming II",a:7,d:9},{n:"Frankincense",a:4,d:5},{n:"Lavender",a:3,d:4}], hinweise:"Bei Überforderung und Stress." },
   { name:"Freude pur", kat:"emotion", quelle:"Blend-Bibliothek", stimmung:"hell · aufhellend", beschreibung:"Joy-Blend mit Zitrusunterstützung — hebt die Stimmung zuverlässig.", oils:[{n:"Joy",a:6,d:7},{n:"Orange",a:6,d:7},{n:"Lemon",a:2,d:4}], hinweise:"Sofort-Stimmungsaufheller." },
   { name:"Verwurzelt", kat:"emotion", quelle:"Blend-Bibliothek", stimmung:"stabil · sicher", beschreibung:"Vier Öle, die zusammen Boden unter den Füßen geben.", oils:[{n:"Grounding",a:6,d:7},{n:"Vetiver",a:3,d:4},{n:"Cistus",a:2,d:3},{n:"Frankincense",a:3,d:4}], hinweise:"Bei Orientierungslosigkeit & Stress." },
   { name:"Mut", kat:"emotion", quelle:"Blend-Bibliothek", stimmung:"stark · aufrecht", beschreibung:"Valor stärkt, Frankincense erdet, Idaho Grand Fir öffnet.", oils:[{n:"Valor",a:7,d:9},{n:"Frankincense",a:4,d:5},{n:"Idaho Grand Fir",a:3,d:4}], hinweise:"Vor herausfordernden Situationen." },
   { name:"Loslassen", kat:"emotion", quelle:"Blend-Bibliothek", stimmung:"frei · leicht", beschreibung:"Zypresse steht für Übergänge — hier in sanfter Begleitung.", oils:[{n:"Cypress",a:6,d:7},{n:"Lavender",a:4,d:5},{n:"Frankincense",a:4,d:5}], hinweise:"Bei Trauer, Veränderung, Abschlüssen." },
   { name:"Selbstliebe", kat:"emotion", quelle:"Blend-Bibliothek", stimmung:"zart · warm", beschreibung:"Rose, Geranium und Ylang Ylang — ein Blend für sich selbst.", oils:[{n:"Rose",a:3,d:4},{n:"Geranium",a:6,d:7},{n:"Ylang Ylang",a:2,d:3},{n:"Frankincense",a:3,d:4}], hinweise:"Rose und Ylang Ylang dosiert einsetzen." },
+  // JAHRESZEITEN
   { name:"Frühlingserwachen", kat:"jahreszeit", quelle:"Blend-Bibliothek", stimmung:"frisch · floral", beschreibung:"Lemon, Geranium und Lime — Frühling in Reinform.", oils:[{n:"Lemon",a:6,d:7},{n:"Geranium",a:4,d:5},{n:"Lime",a:4,d:5}], hinweise:"März–Mai. Belebt nach dem Winter." },
   { name:"Blütenluft", kat:"jahreszeit", quelle:"Blend-Bibliothek", stimmung:"zart · hell", beschreibung:"Grapefruit und Lavendel mit Zypresse — leicht und frühlingshaft.", oils:[{n:"Grapefruit",a:6,d:7},{n:"Lavender",a:4,d:5},{n:"Cypress",a:4,d:5}], hinweise:"Aprilfrische für drinnen." },
   { name:"Sommerleicht", kat:"jahreszeit", quelle:"Blend-Bibliothek", stimmung:"spritzig · kühl", beschreibung:"Lime und Grapefruit mit einem Minzehintergrund.", oils:[{n:"Lime",a:6,d:7},{n:"Grapefruit",a:6,d:7},{n:"Peppermint",a:2,d:4}], hinweise:"Kühlt an heißen Tagen subjektiv." },
@@ -413,14 +436,18 @@ const blends = [
   { name:"Waldspaziergang", kat:"jahreszeit", quelle:"Blend-Bibliothek", stimmung:"harztig · tief", beschreibung:"Frankincense, Kiefer und Vetiver — wie nasse Erde und Harz.", oils:[{n:"Frankincense",a:4,d:5},{n:"Pine",a:6,d:7},{n:"Vetiver",a:2,d:3},{n:"Orange",a:2,d:3}], hinweise:"September–November. Erdend." },
   { name:"Weihnachtszauber", kat:"jahreszeit", quelle:"Blend-Bibliothek", stimmung:"festlich · warm", beschreibung:"Christmas Spirit ist der Star — Pine und Orange umrahmen.", oils:[{n:"Christmas Spirit",a:7,d:9},{n:"Pine",a:4,d:5},{n:"Orange",a:3,d:4}], hinweise:"Der Klassiker für den Advent." },
   { name:"Winterwärme", kat:"jahreszeit", quelle:"Blend-Bibliothek", stimmung:"würzig · behaglich", beschreibung:"Thieves-Wärme mit Orange und einem Hauch Cinnamon Roll.", oils:[{n:"Thieves",a:4,d:5},{n:"Orange",a:6,d:7},{n:"Cinnamon Roll",a:3,d:4},{n:"Idaho Grand Fir",a:1,d:2}], hinweise:"Gemütlicher Winterabend." },
+  { name:"Frühlingsbrise", kat:"jahreszeit", quelle:"Blend-Bibliothek", stimmung:"frisch · floral · luftig", beschreibung:"Bergamotte trägt, Lavender rundet ab — Lime gibt das Spritzige. Wie ein Fenster, das sich im April öffnet.", oils:[{n:"Bergamotte",a:5,d:6},{n:"Lavender",a:4,d:5},{n:"Lime",a:4,d:5}], hinweise:"März–Mai. Zart und luftig." },
+  { name:"Sonnenterrasse", kat:"jahreszeit", quelle:"Blend-Bibliothek", stimmung:"sonnig · warm · mediterran", beschreibung:"Orange und Bergamotte im Sonnenlicht — Geranium gibt die blumige Note. Wie Kaffee auf der Terrasse, wenn es zum ersten Mal wirklich warm wird.", oils:[{n:"Orange",a:6,d:7},{n:"Bergamotte",a:4,d:5},{n:"Geranium",a:3,d:4}], hinweise:"April–Juni. Hebt die Stimmung sofort." },
+  // HAUS & REINIGUNG
   { name:"Frische Luft", kat:"haus", quelle:"Blend-Bibliothek", stimmung:"reinigend · clean", beschreibung:"Purification, Lemon und Tea Tree — das Standard-Trio gegen Gerüche.", oils:[{n:"Purification",a:7,d:9},{n:"Lemon",a:4,d:5},{n:"Tea Tree",a:3,d:4}], hinweise:"Nach dem Kochen, bei muffiger Luft." },
   { name:"Thieves Protect", kat:"haus", quelle:"Blend-Bibliothek", stimmung:"antibakteriell · warm", beschreibung:"Thieves arbeitet, Lemon und Orange geben Frische.", oils:[{n:"Thieves",a:7,d:9},{n:"Lemon",a:4,d:5},{n:"Orange",a:3,d:4}], hinweise:"Erkältungszeit, Gäste, nach Krankenstand." },
   { name:"Raumklärung", kat:"haus", quelle:"Blend-Bibliothek", stimmung:"klar · frisch", beschreibung:"Eucalyptus und Tea Tree, mit Lemon aufgehellt.", oils:[{n:"Eucalyptus Globulus",a:6,d:7},{n:"Tea Tree",a:4,d:5},{n:"Lemon",a:4,d:5}], hinweise:"Für Badezimmer & Küchenbereich." },
   { name:"Melrose Magic", kat:"haus", quelle:"Blend-Bibliothek", stimmung:"neutralisierend", beschreibung:"Melrose ist der unbekannte Star für Geruchsneutralisation.", oils:[{n:"Melrose",a:7,d:9},{n:"Lemon",a:4,d:5},{n:"Purification",a:3,d:4}], hinweise:"Tierkäfig, Schuhe, feuchte Wäsche — wirkt." },
   { name:"Bad & WC Fresh", kat:"haus", quelle:"Blend-Bibliothek", stimmung:"hygienisch · frisch", beschreibung:"Tea Tree mit Lavendel und Lemon — angenehm und wirksam.", oils:[{n:"Tea Tree",a:6,d:7},{n:"Lavender",a:4,d:5},{n:"Lemon",a:4,d:5}], hinweise:"Täglich diffundieren im Bad." },
+  // DUFT.RITUALE
   { name:"Gentle Good Morning", kat:"ritual", quelle:"Duft.Rituale", stimmung:"sanft · fruchtig-frisch", beschreibung:"Sanft & einladend — fruchtig-frisch für einen weichen Start.", oils:[{n:"Orange",a:4,d:5},{n:"Lemon",a:3,d:3},{n:"Clarity",a:1,d:2}], hinweise:"" },
   { name:"Soft Wake-Up", kat:"ritual", quelle:"Duft.Rituale", stimmung:"weich · warm", beschreibung:"Weich wach werden, nicht reißen.", oils:[{n:"Lavender",a:4,d:5},{n:"Copaiba",a:3,d:3},{n:"Orange",a:1,d:2}], hinweise:"" },
-  { name:"Sunrise Hug", kat:"ritual", quelle:"Duft.Rituale", stimmung:"hell · warm", beschreibung:"Hell & warm — Bergamot ergänzen wenn vorhanden.", oils:[{n:"Orange",a:6,d:7},{n:"Frankincense",a:2,d:3}], hinweise:"⚠️ Original: + Bergamot. Ersatz: + 1 Grapefruit" },
+  { name:"Sunrise Hug", kat:"ritual", quelle:"Duft.Rituale", stimmung:"hell · warm · blumig", beschreibung:"Orange bringt Wärme, Bergamotte die Leichtigkeit, Frankincense die Tiefe.", oils:[{n:"Orange",a:5,d:6},{n:"Bergamotte",a:3,d:4},{n:"Frankincense",a:2,d:3}], hinweise:"Jetzt vollständig mit Bergamotte ✓" },
   { name:"Kitchen Slow Morning", kat:"ritual", quelle:"Duft.Rituale", stimmung:"zimtig-warm", beschreibung:"Zimtig-warm für langsame Morgen.", oils:[{n:"Cinnamon Roll",a:4,d:5},{n:"Orange",a:3,d:3},{n:"Stress Away",a:1,d:2}], hinweise:"" },
   { name:"Clarity Kick", kat:"ritual", quelle:"Duft.Rituale", stimmung:"scharf · klar", beschreibung:"Scharf & klar für schwierige Morgen.", oils:[{n:"Clarity",a:2,d:3},{n:"Peppermint",a:3,d:3},{n:"Lemon",a:3,d:4}], hinweise:"" },
   { name:"Hello Energy", kat:"ritual", quelle:"Duft.Rituale", stimmung:"aktivierend", beschreibung:"Energie-Boost mit En-R-Gee.", oils:[{n:"En-R-Gee",a:4,d:5},{n:"Orange",a:3,d:3},{n:"Peppermint",a:1,d:2}], hinweise:"" },
@@ -464,6 +491,7 @@ const blends = [
   { name:"Idea Flow", kat:"ritual", quelle:"Duft.Rituale", stimmung:"kreativ · frisch", beschreibung:"Kreativ & frisch.", oils:[{n:"Orange",a:4,d:5},{n:"Peppermint",a:3,d:3},{n:"Inspiration",a:1,d:2}], hinweise:"" },
   { name:"Creative Desk", kat:"ritual", quelle:"Duft.Rituale", stimmung:"Fokus trifft Kreativität", beschreibung:"Fokus trifft Kreativität.", oils:[{n:"Clarity",a:2,d:3},{n:"Rosemary",a:3,d:3},{n:"Orange",a:3,d:4}], hinweise:"" },
   { name:"New Horizons", kat:"ritual", quelle:"Duft.Rituale", stimmung:"New Heights + Klarheit", beschreibung:"New Heights + Klarheit.", oils:[{n:"New Heights",a:4,d:5},{n:"Lemon",a:3,d:3},{n:"Grounding",a:1,d:2}], hinweise:"" },
+  // BLEND BÜCHLEIN
   { name:"Sanfter Start", kat:"buechlein", quelle:"Blend-Büchlein", stimmung:"hell · frisch · motivierend", beschreibung:"Morgen, Küchenstart, erste To-do-Runde.", oils:[{n:"Orange",a:3,d:4},{n:"Lemon",a:2,d:2},{n:"Peppermint",a:2,d:2},{n:"Rosemary",a:1,d:2}], hinweise:"" },
   { name:"Klarer Kopf (Büchlein)", kat:"buechlein", quelle:"Blend-Büchlein", stimmung:"konzentriert · wach · sortiert", beschreibung:"Vor Arbeit, Schreiben, Organisieren.", oils:[{n:"Clarity",a:3,d:4},{n:"Lemon",a:3,d:3},{n:"Peppermint",a:1,d:1},{n:"Rosemary",a:1,d:2}], hinweise:"" },
   { name:"Kreativer Flow", kat:"buechlein", quelle:"Blend-Büchlein", stimmung:"offen · leicht · inspirierend", beschreibung:"Brainstorming, Content-Ideen.", oils:[{n:"Inspiration",a:3,d:4},{n:"Orange",a:2,d:2},{n:"Frankincense",a:2,d:2},{n:"Lime",a:1,d:2}], hinweise:"" },
@@ -480,12 +508,16 @@ const blends = [
   { name:"Waldgefühl", kat:"buechlein", quelle:"Blend-Büchlein", stimmung:"grün · ruhig · erdend", beschreibung:"Wie Fenster auf und tief in den Wald atmen.", oils:[{n:"Pine",a:2,d:3},{n:"Cypress",a:2,d:2},{n:"Idaho Grand Fir",a:2,d:2},{n:"Vetiver",a:1,d:1}], hinweise:"Optional: + 1 Orange" },
   { name:"Fülle & gute Laune", kat:"buechlein", quelle:"Blend-Büchlein", stimmung:"freundlich · leicht festlich", beschreibung:"Besuch, gute Stimmung, Raumupgrade.", oils:[{n:"Abundance",a:3,d:4},{n:"Orange",a:3,d:3},{n:"Ylang Ylang",a:1,d:1},{n:"Geranium",a:1,d:2}], hinweise:"" }
 ];
+
+// ===== DATA: ROLL-ONS =====
 const rollons = [
+  // TOPISCHE ANWENDUNGEN (aus Roller Blends & Topisch Sheet)
   { name:"Flower Child Roller", kat:"topisch", beschreibung:"Klassischer Wohlfühl-Roller für Haut, Hormone & Stimmung. Wirkt beruhigend, erdend und leicht parfümierend.", oils:[{n:"Ylang Ylang",tr:4},{n:"Lavender",tr:4},{n:"Geranium",tr:3}], flasche:"5 mL Roller", traeger:"Trägeröl nach Wahl", anwendung:"Auf Handgelenke, Nacken, hinter die Ohren.", hinweise:"" },
   { name:"Chill Out Roller", kat:"topisch", beschreibung:"Klassischer Entspannungs-Roller. Valor + Lavendel = Ruhe & Stärke. Macht sich auch als Geschenk gut.", oils:[{n:"Lavender",tr:10},{n:"Valor",tr:10}], flasche:"5 mL Roller", traeger:"Trägeröl nach Wahl", anwendung:"Handgelenke, Nacken, Fußsohlen, entlang der Wirbelsäule.", hinweise:"" },
   { name:"Fine Line Eraser", kat:"topisch", beschreibung:"Drei klassische Schönheitsöle für Linien, Narben & Ebenmäßigkeit. Arganöl ist ideal als Basis.", oils:[{n:"Lavender",tr:10},{n:"Frankincense",tr:10},{n:"Rose",tr:2}], flasche:"5 mL Roller", traeger:"Bio-Arganöl", anwendung:"Morgens & abends auf Gesicht, Hals, Dekolleté.", hinweise:"" },
   { name:"Tante Flo Blend", kat:"topisch", beschreibung:"Bewährter Blend für die ersten Zyklustage. Auf Unterbauch, innere & äußere Knöchel (Vita-Flex-Punkte).", oils:[{n:"Cypress",tr:30},{n:"Cistus",tr:20},{n:"Geranium",tr:10}], flasche:"15 mL Roller", traeger:"V-6 oder Trägeröl", anwendung:"1–3× täglich auf Unterbauch & Knöchel.", hinweise:"⚠️ Original enthält auch Helichrysum (nicht in Sammlung)." },
   { name:"Glow Serum", kat:"topisch", beschreibung:"Nährendes Gesichtsserum für strahlende Haut. Morgens & abends anwenden.", oils:[{n:"Frankincense",tr:20},{n:"Geranium",tr:5}], flasche:"60 mL Tropfflasche", traeger:"Arganöl, Jojoba oder Rosehip", anwendung:"Morgens & abends auftragen.", hinweise:"⚠️ Original: + Blue Tansy (nicht in Sammlung)." },
+  // ROLL-ONS (aus Duft.Rituale Roll-ons Sheet)
   { name:"Sisterhood Morning", kat:"morgen", beschreibung:"Sanfter Morgen-Roller — verbindend und aufbauend.", oils:[{n:"Lavender",tr:3},{n:"Frankincense",tr:2},{n:"Orange",tr:2},{n:"Inspiration",tr:1}], flasche:"10 mL", traeger:"Trägeröl", anwendung:"Handgelenke, Hals", hinweise:"" },
   { name:"Grounded Focus Roll-on", kat:"morgen", beschreibung:"Fokussiert und geerdet in den Tag.", oils:[{n:"Clarity",tr:2},{n:"Peppermint",tr:2},{n:"Grounding",tr:2},{n:"Frankincense",tr:1}], flasche:"10 mL", traeger:"Trägeröl", anwendung:"Schläfen, Handgelenke", hinweise:"" },
   { name:"Office Booster", kat:"morgen", beschreibung:"Energie für den Arbeitstag.", oils:[{n:"Orange",tr:3},{n:"Peppermint",tr:2},{n:"En-R-Gee",tr:1}], flasche:"10 mL", traeger:"Trägeröl", anwendung:"Handgelenke, Nacken", hinweise:"" },
@@ -514,6 +546,8 @@ const rollons = [
   { name:"Cozy Holiday", kat:"geborgen", beschreibung:"Gemütliche Feiertagsstimmung.", oils:[{n:"Christmas Spirit",tr:2},{n:"Orange",tr:2},{n:"Copaiba",tr:2},{n:"Stress Away",tr:1}], flasche:"10 mL", traeger:"Trägeröl", anwendung:"Handgelenke", hinweise:"" },
   { name:"Snow Day", kat:"geborgen", beschreibung:"Wintertag-Geborgenheit.", oils:[{n:"Lavender",tr:2},{n:"Frankincense",tr:2},{n:"Orange",tr:2},{n:"Inspiration",tr:1}], flasche:"10 mL", traeger:"Trägeröl", anwendung:"Handgelenke", hinweise:"" }
 ];
+
+// ===== DATA: DIY =====
 const diy = [
   { name:"⭐ Außenfenster-Reiniger (streifenfrei)", typ:"reinigung", kat:"Fenster & Glas", emoji:"🪟",
     zutaten:"Für 2 Liter:\n• 20 ml Thieves Haushaltsreiniger (ca. 4 TL)\n• 120 ml Essigessenz (25%)\n• 1.860 ml destilliertes Wasser\n• 32 Tropfen Lemon EO\n• 20 Tropfen Eucalyptus Globulus EO",
@@ -523,6 +557,7 @@ const diy = [
     zutaten:"Für 500 ml:\n• 15 ml Thieves Haushaltsreiniger (ca. 3 TL)\n• 485 ml destilliertes Wasser\n• 10 Tropfen Lemon EO\n• 5 Tropfen Rosemary EO\n• 5 Tropfen Orange EO",
     zubereitung:"Alle Zutaten in Sprühflasche füllen, gut schütteln. Auf Fenster/Herd/Dunstabzug/Kacheln sprühen oder mit Tuch auftragen. Einige Minuten einwirken lassen. Mit Fensterwischer oder feuchtem Mikrofasertuch abwischen. Bei starker Fettansammlung zweimal auftragen.",
     hinweise:"⭐ Persönlicher Favorit. Stärker konzentriert als der Fensterreiniger — Fett braucht mehr Tensidkraft. Lemon löst Fett, Orange bringt natürliches Limonen (wirksamer pflanzlicher Fettlöser), Rosemary wirkt antimikrobiell. Destilliertes Wasser verhindert Kalkflecken auf Edelstahl und Glas. NICHT auf Marmor oder Naturstein verwenden." },
+
   { name:"Flecken-Stick", typ:"reinigung", kat:"Wäsche vorbehandeln", emoji:"👕",
     zutaten:"• 30 mL Rollerflasche (Glas)\n• Halb füllen mit Thieves Haushaltsreiniger\n• 1 EL Wasserstoffperoxid\n• 10 Tr. Lemon EO\n• Rest auffüllen mit Thieves Spülmittel",
     zubereitung:"Gut schütteln. Auf Flecken rollen, ggf. mit Holzbürste einarbeiten. Normal waschen mit Thieves Waschmittel.",
@@ -571,42 +606,11 @@ const diy = [
     zutaten:"• Rosemary EO (fördert Haarwachstum)\n• Lavender EO (beruhigt Kopfhaut)\n• Geranium EO (balanciert Talgproduktion)\n• Joy EO (für gute Energie im Ritual)\n• ¼ alkoholfreies Witch Hazel\n• ¾ Wasser → 120 mL Sprühflasche",
     zubereitung:"EOs in Sprühflasche geben, mit Witch Hazel & Wasser auffüllen. Gut schütteln. Täglich auf Kopfhaut & Haar sprühen, nass oder trocken.",
     hinweise:"⚠️ Cedarwood durch Idaho Grand Fir ersetzen (ähnliche Wirkung auf Haarfollikel)." },
-  { name:"Shampoo · Haarwachstum", typ:"beauty", kat:"Haarpflege", emoji:"🌿",
-    zutaten:"Für 250 ml unparfümiertes Basisshampoo:\n• 10 Tr. Rosemary EO – regt Durchblutung & Haarfollikel an\n• 5 Tr. Peppermint EO – belebend, stärkt Kopfhaut\n• 3 Tr. Idaho Grand Fir EO – unterstützt Haarfollikel (Cedarwood-Ersatz)",
-    zubereitung:"EOs direkt in die Shampooflasche geben. Gut schütteln vor jedem Gebrauch. Normal anwenden, 1–2 Min. einmassieren, gründlich ausspülen.",
-    hinweise:"⚠️ Peppermint nicht für Kinder unter 10. Kombination mit 'Conditioner · Haarwachstum' empfohlen." },
-  { name:"Conditioner · Haarwachstum", typ:"beauty", kat:"Haarpflege", emoji:"🌿",
-    zutaten:"Für 250 ml unparfümierten Basisconditioner:\n• 10 Tr. Lavender EO – beruhigt, feuchtigkeitsspendend\n• 6 Tr. Frankincense EO – regenerierend, stärkt Haarstruktur\n• 2 Tr. Geranium EO – balanciert, gibt Glanz",
-    zubereitung:"EOs in die Conditionerflasche geben, gut schütteln. Auf Längen & Spitzen auftragen (nicht Kopfhaut), 2–3 Min. einwirken lassen, gründlich ausspülen.",
-    hinweise:"Duo mit 'Shampoo · Haarwachstum'. Duftprofil: krautig-blumig, frisch." },
-  { name:"Shampoo · Fettige Kopfhaut", typ:"beauty", kat:"Haarpflege", emoji:"🍋",
-    zutaten:"Für 250 ml unparfümiertes Basisshampoo:\n• 8 Tr. Rosemary EO – reguliert Talgproduktion, klärend\n• 6 Tr. Lemon EO – entfettend, erfrischend\n• 6 Tr. Tea Tree EO – reinigt Kopfhaut, antibakteriell",
-    zubereitung:"EOs direkt in die Shampooflasche geben. Gut schütteln vor jedem Gebrauch. Normal anwenden, 1–2 Min. einmassieren, gründlich ausspülen.",
-    hinweise:"⚠️ Lemon ist photosensibilisierend — nach der Anwendung Kopfhaut nicht direkt der Sonne aussetzen. Kombination mit 'Conditioner · Fettige Kopfhaut' empfohlen." },
-  { name:"Conditioner · Fettige Kopfhaut", typ:"beauty", kat:"Haarpflege", emoji:"🍋",
-    zutaten:"Für 250 ml unparfümierten Basisconditioner:\n• 10 Tr. Geranium EO – balanciert Talgproduktion, ohne zu beschweren\n• 8 Tr. Lavender EO – beruhigt, leicht feuchtigkeitsspendend",
-    zubereitung:"EOs in die Conditionerflasche geben, gut schütteln. Nur auf Längen & Spitzen auftragen (nicht Kopfhaut!), 2–3 Min. einwirken lassen, gründlich ausspülen.",
-    hinweise:"Duo mit 'Shampoo · Fettige Kopfhaut'. Bewusst leichtes Duo — kein Ylang Ylang, um Kopfhaut nicht zusätzlich zu belasten. Duftprofil: frisch-floral." },
-  { name:"Shampoo · Trockene Kopfhaut", typ:"beauty", kat:"Haarpflege", emoji:"🌸",
-    zutaten:"Für 250 ml unparfümiertes Basisshampoo:\n• 10 Tr. Lavender EO – beruhigt Juckreiz, feuchtigkeitsspendend\n• 6 Tr. Geranium EO – reguliert & pflegt sanft\n• 4 Tr. Frankincense EO – entzündungshemmend, regenerierend",
-    zubereitung:"EOs direkt in die Shampooflasche geben. Gut schütteln vor jedem Gebrauch. Normal anwenden, 1–2 Min. sanft einmassieren, gründlich ausspülen.",
-    hinweise:"Kombination mit 'Conditioner · Trockene Kopfhaut' empfohlen. Duftprofil: blumig-warm, dezent harzig." },
-  { name:"Conditioner · Trockene Kopfhaut", typ:"beauty", kat:"Haarpflege", emoji:"🌸",
-    zutaten:"Für 250 ml unparfümierten Basisconditioner:\n• 8 Tr. Lavender EO – tiefe Feuchtigkeitspflege\n• 4 Tr. Ylang Ylang EO – nährt & gibt Glanz (nicht mehr!)\n• 4 Tr. Frankincense EO – stärkt Haarstruktur\n• 2 Tr. Cistus EO – hautregenerierend, harzig (Myrrhe-Ersatz)",
-    zubereitung:"EOs in die Conditionerflasche geben, gut schütteln. Großzügig auf Längen & Spitzen auftragen (nicht Kopfhaut), 3–5 Min. einwirken lassen, gründlich ausspülen.",
-    hinweise:"⚠️ Ylang Ylang & Cistus wirklich bei den angegebenen Mengen belassen — beide sind sehr intensiv. Duo mit 'Shampoo · Trockene Kopfhaut'. Duftprofil: blumig-warm-harzig." },
-  { name:"Shampoo · Allround", typ:"beauty", kat:"Haarpflege", emoji:"✨",
-    zutaten:"Für 250 ml unparfümiertes Basisshampoo:\n• 10 Tr. Rosemary EO – aktivierend, kopfhautpflegend\n• 6 Tr. Lavender EO – ausgleichend, beruhigend\n• 4 Tr. Tea Tree EO – reinigend, frisch",
-    zubereitung:"EOs direkt in die Shampooflasche geben. Gut schütteln vor jedem Gebrauch. Normal anwenden, 1–2 Min. einmassieren, gründlich ausspülen.",
-    hinweise:"Funktioniert für fast alle Haartypen. Ideal als Einstiegsrezept. Kombination mit 'Conditioner · Allround' empfohlen." },
-  { name:"Conditioner · Allround", typ:"beauty", kat:"Haarpflege", emoji:"✨",
-    zutaten:"Für 250 ml unparfümierten Basisconditioner:\n• 8 Tr. Lavender EO – Feuchtigkeit & Ausgleich\n• 6 Tr. Geranium EO – Glanz & Talgbalance\n• 4 Tr. Frankincense EO – Stärkung & Regeneration",
-    zubereitung:"EOs in die Conditionerflasche geben, gut schütteln. Auf Längen & Spitzen auftragen (nicht Kopfhaut), 2–3 Min. einwirken lassen, gründlich ausspülen.",
-    hinweise:"Duo mit 'Shampoo · Allround'. Duftprofil: blumig-krautig, angenehm alltagstauglich." },
   { name:"Fußbad Erholungs-Mischung", typ:"beauty", kat:"Körperpflege", emoji:"🛁",
     zutaten:"• 1 Tasse Epsom-Salz\n• Je 4–5 Tr. Rosemary & Cypress EO\n• Getrocknete Lavendelblüten (optional)\n• Warmes Wasser für Fußbecken",
     zubereitung:"Salz & EOs in Glas mischen, gut schütteln. Fußbecken mit warmem Wasser füllen. Salzmischung einrühren. 15–20 Min. einweichen. Abtrocknen & mit Creme nachpflegen.",
     hinweise:"⚠️ Juniper durch Cypress ersetzt (beide unterstützen Durchblutung). Erfrischt & belebt müde Füße." },
+  // ===== DUFTSPRAY-STÄBCHEN =====
   { name:"Grundrezept — Duftspray-Stäbchen", typ:"raumduft", kat:"Basis", emoji:"🪵",
     zutaten:"• 20 ml Trägeröl (fraktioniertes Kokosöl oder Mandelöl)\n• 40 Tropfen ätherische Öle (laut Blend-Rezept)\n• Rattanstäbchen",
     zubereitung:"Trägeröl in ein schlankes Glasgefäß geben. Ätherische Öle dazugeben, kurz umrühren. Stäbchen einlegen, nach 24 Std. wenden.",
@@ -627,6 +631,8 @@ const diy = [
     zutaten:"Für 40 Tropfen (+ 20 ml Trägeröl):\n• 18 Tropfen Frankincense\n• 14 Tropfen Orange\n• 8 Tropfen Cistus",
     zubereitung:"Alle Öle ins Trägeröl geben, Stäbchen einlegen. Nach 24 Std. wenden.",
     hinweise:"Tief, warm, meditative Stille. Cistus ist sehr intensiv — bei Bedarf auf 5–6 Tropfen reduzieren und Frankincense entsprechend erhöhen." },
+
+  // ===== 29 THIEVES-REZEPTE =====
   { name:"1 · Mistkübel-Reiniger", typ:"thieves", kat:"Küche", emoji:"🗑️",
     zutaten:"• Mistkübel leeren & mit Wasser füllen\n• 1–2 Kappen Thieves Haushaltsreiniger direkt hinein\n• Optional: Wattebausch mit Eucalyptus Globulus auf den Boden legen",
     zubereitung:"Mehrere Stunden einwirken lassen. Bei hartnäckigen Flecken mit einer Bürste nachschrubben. Kübel ausleeren und trocken wischen.",
@@ -743,11 +749,15 @@ const diy = [
     zutaten:"• 1 Kappe Thieves Haushaltsreiniger\n• 1 Tasse Wasser\n• ½ Tasse weißer Essig\n→ in Schüssel\n• Alte Socke als Putzhandschuh",
     zubereitung:"Socke in Reinigungslösung tauchen, über jede einzelne Lamelle fahren bis alle sauber sind.",
     hinweise:"Der Socken-Trick reinigt beide Seiten einer Lamelle gleichzeitig." },
+
+  // ===== BEAUTY (fortgesetzt) =====
   { name:"DIY Salt Scrub", typ:"beauty", kat:"Körperpflege", emoji:"🌊",
     zutaten:"• ⅔ feines Meersalz\n• ⅓ Massage-Öl (oder anderes Trägeröl)\n• Optional: 5–10 Tr. EO nach Wahl\n  (z.B. Lavender, Geranium, Grapefruit)",
     zubereitung:"In einem mittelgroßen Mason-Glas mischen. Im Duschbad sanft auf Schultern, Hals, Dekolleté, Oberschenkel einmassieren. Abspülen.",
     hinweise:"Sanft exfolierend, nährend, belebend. Gut für eine regelmäßige Morgenpflegeroutine." }
 ];
+
+// ===== DATA: WELLNESS-WISSEN =====
 const wissen = [
   {
     icon:"⚖️", titel:"Hormone & natürliches Gleichgewicht",
@@ -830,6 +840,8 @@ const wissen = [
     notiz:""
   }
 ];
+
+// ===== RENDER HELPERS =====
 function tagLabel(t) {
   return {morgens:'Morgen',abends:'Abend',diffusor:'Diffusor',entspannung:'Entspannung',energie:'Energie',immunsystem:'Immunsystem','herbst-winter':'Herbst/W.','frühling-sommer':'Frühling/S.'}[t]||t;
 }
@@ -841,6 +853,8 @@ function tagClass(t) {
 function blendKatLabel(k) {
   return {morgen:'🌅 Morgen',fokus:'💼 Fokus',abend:'🌙 Abend',schlaf:'💤 Schlaf',emotion:'💚 Emotionen',jahreszeit:'🍃 Jahreszeiten',haus:'🏠 Haus & Reinigung',ritual:'📖 Duft.Rituale',buechlein:'📗 Blend-Büchlein'}[k]||k;
 }
+
+// ===== RENDER: ÖLLE =====
 let oelFilter='all', oelSearch='';
 function renderOele() {
   const t=oelSearch.toLowerCase();
@@ -887,6 +901,8 @@ document.getElementById('oelFilters').addEventListener('click',e=>{
   }
 });
 renderOele();
+
+// ===== RENDER: BLENDS =====
 let blendFilter='all', blendSearch='';
 function renderBlends() {
   const t=blendSearch.toLowerCase();
@@ -935,6 +951,8 @@ document.getElementById('blendFilters').addEventListener('click',e=>{
   }
 });
 renderBlends();
+
+// ===== RENDER: ROLL-ONS =====
 let rollonFilter='all', rollonSearch='';
 function renderRollons() {
   const t=rollonSearch.toLowerCase();
@@ -981,6 +999,8 @@ document.getElementById('rollonFilters').addEventListener('click',e=>{
   }
 });
 renderRollons();
+
+// ===== RENDER: DIY =====
 let diyFilter='all', diySearch='';
 function renderDiy() {
   const t=diySearch.toLowerCase();
@@ -1019,6 +1039,8 @@ document.getElementById('diyFilters').addEventListener('click',e=>{
   }
 });
 renderDiy();
+
+// ===== RENDER: WISSEN =====
 document.getElementById('wissenContainer').innerHTML=wissen.map((w,i)=>`
   <div class="wissen-card" id="wk${i}">
     <div class="wissen-header" onclick="document.getElementById('wk${i}').classList.toggle('expanded')">
@@ -1030,6 +1052,7 @@ document.getElementById('wissenContainer').innerHTML=wissen.map((w,i)=>`
       ${w.html}
       ${w.notiz?`<div class="safety-note" style="margin-top:1rem">${w.notiz}</div>`:''}
     </div>
-  </div>`).join('');</script>
+  </div>`).join('');
+</script>
 </body>
 </html>
