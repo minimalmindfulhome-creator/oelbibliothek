@@ -84,6 +84,23 @@
   .safety-note { font-size: 0.7rem; color: #B05030; background: #FDF4F0; border-left: 2px solid #E07050; padding: 0.35rem 0.65rem; margin-top: 0.5rem; border-radius: 0 2px 2px 0; }
   .blog-idea { font-size: 0.72rem; color: #4A6A8A; background: #EEF3F8; border-left: 2px solid #8AB0D0; padding: 0.35rem 0.65rem; margin-top: 0.5rem; border-radius: 0 2px 2px 0; }
 
+  /* STATUS BAR & BADGE */
+  .status-bar { background: var(--cream); border-bottom: 1px solid var(--border); padding: 0.5rem 2rem; display: flex; gap: 0.4rem; justify-content: center; flex-wrap: wrap; position: sticky; top: 42px; z-index: 99; }
+  .status-btn { padding: 0.35rem 0.9rem; border: 1px solid var(--border); border-radius: 2px; background: #fff; font-family: 'Jost', sans-serif; font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--charcoal-light); cursor: pointer; transition: all 0.2s; display: inline-flex; align-items: center; gap: 0.35rem; }
+  .status-btn:hover { border-color: var(--earth-light); color: var(--earth); }
+  .status-btn.active { background: var(--earth); border-color: var(--earth); color: var(--cream); }
+  .status-btn .count { font-size: 0.6rem; opacity: 0.7; font-weight: 400; }
+  .controls.with-status { top: 84px; }
+  .wishlist-badge { display: inline-flex; align-items: center; gap: 0.2rem; font-size: 0.6rem; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.12rem 0.45rem; border-radius: 2px; font-weight: 500; background: #F5EEE6; color: var(--earth); border: 1px solid var(--earth-light); }
+  .card-wishlist { border-color: var(--earth-light); background: linear-gradient(180deg, #fff 0%, #FAF6F0 100%); }
+  .card-wishlist .card-header { background: #F5EEE6; }
+
+  /* CROSS-REFERENCE */
+  .cross-ref { display: flex; gap: 0.3rem; flex-wrap: wrap; margin-top: 0.4rem; }
+  .cross-ref-chip { display: inline-block; background: var(--warm-white); border: 1px solid var(--border); border-radius: 2px; font-size: 0.68rem; padding: 0.18rem 0.45rem; color: var(--sage-dark); }
+  .cross-ref-chip.wishlist { background: #FAF6F0; border-color: var(--earth-light); color: var(--earth); }
+  .cross-ref-empty { font-size: 0.7rem; color: var(--muted); font-style: italic; }
+
   /* BLEND DROPS TABLE */
   .drops-grid { display: grid; grid-template-columns: 1fr auto auto; gap: 0; border: 1px solid var(--border); border-radius: 3px; overflow: hidden; margin-top: 0.4rem; }
   .drops-header { background: var(--sand); font-size: 0.6rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--charcoal-light); padding: 0.3rem 0.6rem; }
@@ -163,7 +180,12 @@
 
 <!-- ===== SECTION 1: ÖLE ===== -->
 <div id="sec-oele" class="section active">
-  <div class="controls">
+  <div class="status-bar" id="oelStatusBar">
+    <button class="status-btn active" data-status="owned">✦ Sammlung <span class="count" id="oelOwnedCount"></span></button>
+    <button class="status-btn" data-status="wishlist">🌱 Wunschliste <span class="count" id="oelWishlistCount"></span></button>
+    <button class="status-btn" data-status="all">Alle</button>
+  </div>
+  <div class="controls with-status">
     <div class="controls-inner">
       <div class="search-wrap">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
@@ -188,7 +210,12 @@
 
 <!-- ===== SECTION 2: DIFFUSOR ===== -->
 <div id="sec-diffusor" class="section">
-  <div class="controls">
+  <div class="status-bar" id="blendStatusBar">
+    <button class="status-btn active" data-status="owned">✦ Sammlung <span class="count" id="blendOwnedCount"></span></button>
+    <button class="status-btn" data-status="wishlist">🌱 Wunschliste <span class="count" id="blendWishlistCount"></span></button>
+    <button class="status-btn" data-status="all">Alle</button>
+  </div>
+  <div class="controls with-status">
     <div class="controls-inner">
       <div class="search-wrap">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
@@ -229,7 +256,12 @@
 
 <!-- ===== SECTION 3: ROLL-ONS ===== -->
 <div id="sec-rollons" class="section">
-  <div class="controls">
+  <div class="status-bar" id="rollonStatusBar">
+    <button class="status-btn active" data-status="owned">✦ Sammlung <span class="count" id="rollonOwnedCount"></span></button>
+    <button class="status-btn" data-status="wishlist">🌱 Wunschliste <span class="count" id="rollonWishlistCount"></span></button>
+    <button class="status-btn" data-status="all">Alle</button>
+  </div>
+  <div class="controls with-status">
     <div class="controls-inner">
       <div class="search-wrap">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
@@ -254,7 +286,12 @@
 
 <!-- ===== SECTION 4: DIY ===== -->
 <div id="sec-diy" class="section">
-  <div class="controls">
+  <div class="status-bar" id="diyStatusBar">
+    <button class="status-btn active" data-status="owned">✦ Sammlung <span class="count" id="diyOwnedCount"></span></button>
+    <button class="status-btn" data-status="wishlist">🌱 Wunschliste <span class="count" id="diyWishlistCount"></span></button>
+    <button class="status-btn" data-status="all">Alle</button>
+  </div>
+  <div class="controls with-status">
     <div class="controls-inner">
       <div class="search-wrap">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
@@ -295,6 +332,29 @@ function highlight(text, term) {
   if (!term || !text) return text || '';
   const r = new RegExp(`(${term.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')})`, 'gi');
   return String(text).replace(r, '<mark>$1</mark>');
+}
+
+// ===== STATUS HELPERS =====
+function statusOf(item) { return item.status === 'wishlist' ? 'wishlist' : 'owned'; }
+function passStatusFilter(item, statusFilter) {
+  if (statusFilter === 'all') return true;
+  return statusOf(item) === statusFilter;
+}
+function wishlistBadge(item) {
+  return statusOf(item) === 'wishlist' ? '<span class="wishlist-badge">🌱 Wunschliste</span>' : '';
+}
+function cardWishlistClass(item) {
+  return statusOf(item) === 'wishlist' ? ' card-wishlist' : '';
+}
+function setupStatusBar(barId, callback) {
+  document.getElementById(barId).addEventListener('click', e => {
+    if (e.target.classList.contains('status-btn') || e.target.parentElement.classList.contains('status-btn')) {
+      const btn = e.target.classList.contains('status-btn') ? e.target : e.target.parentElement;
+      document.querySelectorAll('#' + barId + ' .status-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      callback(btn.dataset.status);
+    }
+  });
 }
 
 // ===== DATA: ÖLE =====
@@ -386,7 +446,34 @@ const oils = [
 
   { name:"Northern Lights Black Spruce", emoji:"🌌", aroma:"Frisch-tannennadelig, süßlich-holzig, leicht harzig — voller und wärmer als gewöhnliche Fichte", wirkung:"Erdend und upliftend zugleich. Körperlich: atemunterstützend, immunstärkend, muskelentspannend (topisch). Emotional: fördert innere Stärke, Ausgeglichenheit und tiefes Durchatmen. Ideal nach intensiven Tagen.", anwendung:"Diffusor (3–5 Tr.), direktes Einatmen, topisch auf Brust, Nacken oder Fußsohlen verdünnt. Gut für Morgenritual oder Meditation.", blends:["Idaho Grand Fir + Frankincense","Valor + Lavender","Cedarwood + Vetiver"], contentIdeen:"Post: 'Das Öl, das ich jetzt jeden Morgen einatme — und warum das kein Zufall ist.' Blog: Nadelbaum-Öle für Atemwege und innere Ruhe. Story: Wintermorgen-Diffusor ohne Duftkerze.", zielgruppe:"Naturliebhaberinnen, Frauen mit Atemwegsproblemen, alle die Wald- und Bergluft zuhause wollen.", saison:"Herbst/Winter, Ganzjährig. Stimmung: Wald, innere Stärke, Reinheit, Atemraum.", tags:["morgens","energie","diffusor","herbst-winter"] },
 
-  { name:"Cedarwood", emoji:"🌳", aroma:"Warm-holzig, balsamisch, leicht rauchig, samtig geerdet — wie ein alter Wald", wirkung:"Beruhigend, schlaffördernd, tief erdend. Körperlich: fördert Haarwachstum (topisch auf Kopfhaut), hautpflegend. Emotional: gibt Sicherheit, Schutz und Geborgenheit. Senkt nachweislich Cortisol und beruhigt das Nervensystem.", anwendung:"Diffusor (3–4 Tr.) abends, topisch auf Fußsohlen vor dem Schlafengehen, 1–2 Tr. ins Trägeröl für Kopfhaut-Massage.", blends:["Lavender + Frankincense (Schlaf)","Vetiver + Orange (Erdung)","Northern Lights Black Spruce + Pine (Wald)"], contentIdeen:"Post: 'Das Öl, das mir beim Einschlafen wirklich hilft — nach Monaten des Ausprobierens.' Blog: Meine Abendroutine für tiefen Schlaf. Story: Fußsohlen-Ritual vor dem Schlafen.", zielgruppe:"Frauen mit Schlafproblemen oder chronischem Stress, Naturkosmetik-Interessierte (Haarpflege). Breite emotionale Ansprache.", saison:"Herbst/Winter. Stimmung: Schlaf, Geborgenheit, Tiefe, Schutz, Wald.", tags:["abends","entspannung","diffusor","herbst-winter"] }
+  { name:"Cedarwood", emoji:"🌳", aroma:"Warm-holzig, balsamisch, leicht rauchig, samtig geerdet — wie ein alter Wald", wirkung:"Beruhigend, schlaffördernd, tief erdend. Körperlich: fördert Haarwachstum (topisch auf Kopfhaut), hautpflegend. Emotional: gibt Sicherheit, Schutz und Geborgenheit. Senkt nachweislich Cortisol und beruhigt das Nervensystem.", anwendung:"Diffusor (3–4 Tr.) abends, topisch auf Fußsohlen vor dem Schlafengehen, 1–2 Tr. ins Trägeröl für Kopfhaut-Massage.", blends:["Lavender + Frankincense (Schlaf)","Vetiver + Orange (Erdung)","Northern Lights Black Spruce + Pine (Wald)"], contentIdeen:"Post: 'Das Öl, das mir beim Einschlafen wirklich hilft — nach Monaten des Ausprobierens.' Blog: Meine Abendroutine für tiefen Schlaf. Story: Fußsohlen-Ritual vor dem Schlafen.", zielgruppe:"Frauen mit Schlafproblemen oder chronischem Stress, Naturkosmetik-Interessierte (Haarpflege). Breite emotionale Ansprache.", saison:"Herbst/Winter. Stimmung: Schlaf, Geborgenheit, Tiefe, Schutz, Wald.", tags:["abends","entspannung","diffusor","herbst-winter"] },
+
+  // ===== WUNSCHLISTE — noch nicht in Sammlung =====
+  { name:"Tangerine", emoji:"🍊", status:"wishlist", aroma:"Süß-zitrisch, weicher als Orange, fast saftig", wirkung:"Stimmungsaufhellend, beruhigend für Kinder, sanftes Abendöl. Klassiker für Sleep-Blends. Sanfter als die meisten Zitrusöle.", anwendung:"Diffusor (4–5 Tr.), topisch verdünnt. Photosensibilisierend.", blends:["Lavender + Cedarwood (Sleep Now)","Stress Away + Vanilla","Roman Chamomile + Lavender (Kids)"], contentIdeen:"Post: 'Das sanftere Schwesterchen von Orange.' Blog: Was Tangerine kann, was Orange nicht kann.", zielgruppe:"Mütter, Familien mit Kindern, Schlafsuchende.", saison:"Ganzjährig. Stimmung: Abend, Kinder, Sleep-Blends.", tags:["abends","entspannung","diffusor"], safety:"Photosensibilisierend bei topischer Anwendung." },
+
+  { name:"Sacred Sandalwood", emoji:"🪷", status:"wishlist", aroma:"Tief-holzig, cremig, leicht milchig-süß, meditativ", wirkung:"Klassiker für Meditation und spirituelle Praxis. Zentrierend, hautpflegend, tief beruhigend. Senkt nachweislich Stresshormone.", anwendung:"Diffusor (2–3 Tr. — sehr intensiv!), topisch verdünnt für Skincare und Parfüm.", blends:["Frankincense + Cedarwood (Meditation)","Lavender + Bergamotte (Heilige Stille)","Vanilla + Frankincense (Oud Whisper)"], contentIdeen:"Post: 'Das Öl, das ich für meine ruhigsten Momente reserviere.' Blog: Sandalwood in Meditation und Skincare.", zielgruppe:"Spirituell-interessierte Frauen, Skincare-Liebhaberinnen, Meditierende.", saison:"Ganzjährig. Stimmung: Meditation, Stille, abendliche Tiefe.", tags:["abends","entspannung","diffusor"] },
+
+  { name:"Helichrysum", emoji:"🌼", status:"wishlist", aroma:"Krautig-süßlich-blumig, leicht honigartig, einzigartig", wirkung:"Skincare-Star. Hautregeneration, Narben, Rötungen. Auch emotionale 'Wunden' — eines der teuersten und gefragtesten YL-Öle.", anwendung:"Topisch verdünnt auf Haut, Narben, blaue Flecken. Diffusor seltener wegen Kosten.", blends:["Frankincense + Geranium (Glow Serum Original)","Cypress + Cistus + Geranium (Tante Flo Original)","Lavender + Frankincense (Narben)"], contentIdeen:"Post: 'Das teuerste Öl in meiner Sammlung — und warum es trotzdem rein soll.' Blog: Helichrysum in der Hautpflege.", zielgruppe:"Skincare-Enthusiastinnen, Frauen mit Narben/Couperose, Premium-Anwenderinnen.", saison:"Ganzjährig. Stimmung: Pflege, Heilung, Skincare-Routine.", tags:["entspannung"] },
+
+  { name:"Patchouli", emoji:"🌿", status:"wishlist", aroma:"Erdig, holzig-süßlich, herb-warm, leicht rauchig", wirkung:"Erdend, hautpflegend, Parfümerie-Klassiker. Emotional: stabilisierend bei Übergängen und Veränderung.", anwendung:"Diffusor (2–3 Tr.), topisch verdünnt. In Parfüm-Roll-ons.", blends:["Vetiver + Frankincense (Erde umarmen)","Bergamotte + Lavender (Bohemian Soul)","Joy + Cedarwood + Grapefruit (Liquid Calm Original)"], contentIdeen:"Post: 'Patchouli ist nicht mehr Hippie — es ist 2026.' Blog: Patchouli in moderner Parfümerie.", zielgruppe:"Frauen mit Interesse an Parfümerie, Erdung, Bohemian-Style.", saison:"Ganzjährig, besonders Herbst. Stimmung: Erdung, Parfüm, Hippie-Chic.", tags:["abends","entspannung","diffusor","herbst-winter"] },
+
+  { name:"Roman Chamomile", emoji:"🌼", status:"wishlist", aroma:"Sanft-fruchtig-blumig, leicht apfelartig, beruhigend", wirkung:"Sanfter als Lavendel. Klassiker für Babys, Kinder, sensible Haut, Schlaf. Sehr breit einsetzbar.", anwendung:"Diffusor (3–4 Tr.), topisch verdünnt. Sehr kindersicher (ab 6 Monate verdünnt).", blends:["Lavender + Tangerine (Kinderschlaf)","Lavender + Clary Sage (Sleepy Time Original)","Lavender pur (Babyhaut)"], contentIdeen:"Post: 'Das Öl, das ich für meine Nichten in der Tasche habe.' Blog: Sanft beruhigende Öle für die ganze Familie.", zielgruppe:"Familien, Eltern, Frauen mit empfindlicher Haut, Babys/Kinder-Pflege.", saison:"Ganzjährig. Stimmung: Familie, Schlaf, sanfte Pflege.", tags:["abends","entspannung","diffusor"] },
+
+  { name:"Spearmint", emoji:"🌱", status:"wishlist", aroma:"Mild-minzig, süßlich, weniger scharf als Peppermint", wirkung:"Sanftere Peppermint-Alternative. Für Kinder ab 6 geeignet, in Kat-Haushalten freundlicher dosiert.", anwendung:"Diffusor (3–4 Tr.), topisch verdünnt.", blends:["Lemon + Lavender (Cat-Safer Mint)","Lemon + Frankincense (Sanfte Konzentration)","Grapefruit + Lime"], contentIdeen:"Post: 'Warum Spearmint mein neuer Liebling für den Diffusor ist — Mia und Schnuppi danken es mir.' Blog: Spearmint vs Peppermint.", zielgruppe:"Familien mit Kindern oder Haustieren, Anfängerinnen.", saison:"Sommer, ganzjährig. Stimmung: Sanfte Belebung, kinderfreundlich.", tags:["morgens","energie","diffusor","frühling-sommer"] },
+
+  { name:"Clary Sage", emoji:"🌸", status:"wishlist", aroma:"Krautig-blumig, leicht muskatellig, weiblich-warm", wirkung:"Frauenthemen-Klassiker. Zyklus, Wechseljahre, hormonelle Balance. Tief in vielen Frauen-Blends.", anwendung:"Topisch verdünnt auf Bauch/Knöchel. Diffusor (3–4 Tr.).", blends:["Geranium + Lavender (Hormonbalance)","Frankincense + Bergamotte (Wechseljahre-Sanft)","Lavender + Roman Chamomile (Sleepy Time Original)"], contentIdeen:"Post: 'Das Öl, das ich erst mit 35 entdeckt habe — und dann nie wieder weggelegt.' Blog: Clary Sage für Frauen über 30.", zielgruppe:"Frauen mit Zyklusthemen, Wechseljahre, hormonelle Schwankungen.", saison:"Ganzjährig. Stimmung: Selbstfürsorge, Weiblichkeit, Balance.", tags:["entspannung","abends"], safety:"NICHT in der Schwangerschaft. Nicht bei östrogenabhängigen Erkrankungen." },
+
+  { name:"Juniper Berry", emoji:"🫐", status:"wishlist", aroma:"Frisch-harzig, leicht würzig-bitter, Wacholderbeere", wirkung:"Detox, Lymphdrainage, reinigend. Klassisches Bestandteil von Tante-Flo-Original-Rezepten.", anwendung:"Topisch verdünnt für Lymphmassage. Diffusor (3–4 Tr.).", blends:["Cypress + Lemon (Detox-Atemraum)","Cypress + Cistus + Geranium + Helichrysum (Tante Flo Original)","Grapefruit + Cypress (Lymph-Massage)"], contentIdeen:"Post: 'Was ich morgens nach dem Aufwachen auf die Beine streiche.' Blog: Lymph-Drainage zu Hause.", zielgruppe:"Wellness-orientierte Frauen, Detox-Interessierte.", saison:"Frühling/Sommer. Stimmung: Reinigung, Lymphe, Frühlingskur.", tags:["frühling-sommer","diffusor"], safety:"NICHT in der Schwangerschaft. Nicht bei Nierenerkrankungen." },
+
+  { name:"Tranquil Roll-on", emoji:"💆‍♀️", status:"wishlist", aroma:"Lavendel · Cedarwood · Roman Chamomile — sanft, beruhigend, klassisch", wirkung:"Pre-formulierter YL-Roll-on für gelegentliche Anspannung. Kult-Status, in fast allen Roll-on-Tutorials.", anwendung:"Direkt aus dem Roll-on auf Schläfen, Nacken, Handgelenke.", blends:["pur als Roll-on","mit Lavender boostern","mit Stress Away kombinieren"], contentIdeen:"Post: 'Der Roll-on, der bei mir IMMER in der Handtasche ist.' Blog: Drei Roll-ons, die das Leben einfacher machen.", zielgruppe:"Einsteigerinnen, Mütter, Stressgeplagte.", saison:"Ganzjährig. Stimmung: Pause, Stress, Entspannung.", tags:["abends","entspannung"] },
+
+  { name:"Deep Relief Roll-on", emoji:"💪", status:"wishlist", aroma:"Peppermint · Wintergrün · Copaiba · Lemon — kühl, würzig, sport-typisch", wirkung:"Pre-formulierter Sport-Roll-on. Bei Muskelverspannungen, nach Bewegung — bewährter Klassiker für Aktive.", anwendung:"Direkt auf verspannte Muskeln, Nacken, Schultern.", blends:["pur als Roll-on","mit Marjoram + Copaiba kombinieren","auf EMS-Trainingstellen"], contentIdeen:"Post: 'Mein Begleiter nach dem EMS-Training.' Blog: Was hilft bei verspannten Schultern wirklich?", zielgruppe:"Sportlerinnen, Schreibtisch-Arbeitende, EMS-Trainierende (☞ Csaba).", saison:"Ganzjährig. Stimmung: Sport, Recovery, Verspannung.", tags:["entspannung"], safety:"Enthält Wintergrün — NICHT in der Schwangerschaft, NICHT für Kinder." },
+
+  { name:"Breathe Again Roll-on", emoji:"🌬️", status:"wishlist", aroma:"Eucalyptus · Peppermint · Myrtle · Copaiba — frei atmend, klar, klassisch", wirkung:"Pre-formulierter Atemwegs-Roll-on. Sanfter als R.C. selbst, ideal für Reise und Erkältung.", anwendung:"Direkt auf Brustbein, Nacken, hinter Ohren.", blends:["pur als Roll-on","mit Frankincense kombinieren","im Reisegepäck"], contentIdeen:"Post: 'Erkältet auf Reisen? Das nehme ich mit.' Blog: Erkältungs-Reise-Kit.", zielgruppe:"Vielreisende, Eltern, Erkältungsanfällige.", saison:"Herbst–Frühling. Stimmung: Erkältung, Reise, Atemwege.", tags:["herbst-winter","immunsystem"] },
+
+  { name:"Dragon Time", emoji:"🐉", status:"wishlist", aroma:"Clary Sage · Fennel · Lavender · Marjoram · Yarrow — würzig-blumig, weiblich, warm", wirkung:"Pre-formulierter Frauen-Blend für Zyklus-Tage. Wärmend, ausgleichend, klassisch in Frauen-Roll-ons.", anwendung:"Topisch verdünnt auf Unterbauch, Lendenwirbelsäule. Diffusor (3–4 Tr.).", blends:["Geranium + Clary Sage","mit Marjoram boostern","auf Knöchel-Vita-Flex"], contentIdeen:"Post: 'Das Öl, das im Schrank steht für DIE Tage.' Blog: Sanfte Begleitung durch den Zyklus.", zielgruppe:"Frauen mit Zyklusthemen, Wechseljahre.", saison:"Ganzjährig. Stimmung: Zyklus, Selbstfürsorge.", tags:["entspannung","diffusor"], safety:"NICHT in der Schwangerschaft." },
+
+  { name:"Gathering", emoji:"🤝", status:"wishlist", aroma:"Lavender · Galbanum · Frankincense · Cinnamon · Sandalwood u.a. — komplex, einladend, harmonisierend", wirkung:"Pre-formulierter Hosting-Blend. Verbindend, harmonisierend — ideal für Gäste und gemeinsame Stunden.", anwendung:"Diffusor (3–4 Tr.) während Gästen, topisch verdünnt.", blends:["Orange + Bergamotte (Hosting Premium)","Frankincense pur","mit Stress Away kombinieren"], contentIdeen:"Post: 'Was ich diffundiere, wenn Gäste kommen.' Blog: Düfte für gemeinsame Stunden.", zielgruppe:"Gastgeberinnen, Slow-Living-Fans.", saison:"Ganzjährig, besonders Herbst/Winter. Stimmung: Hosting, Verbindung, Wärme.", tags:["diffusor","herbst-winter"] }
 ];
 
 // ===== DATA: BLENDS =====
@@ -438,9 +525,6 @@ const blends = [
   { name:"Winterwärme", kat:"jahreszeit", quelle:"Blend-Bibliothek", stimmung:"würzig · behaglich", beschreibung:"Thieves-Wärme mit Orange und einem Hauch Cinnamon Roll.", oils:[{n:"Thieves",a:4,d:5},{n:"Orange",a:6,d:7},{n:"Cinnamon Roll",a:3,d:4},{n:"Idaho Grand Fir",a:1,d:2}], hinweise:"Gemütlicher Winterabend." },
   { name:"Frühlingsbrise", kat:"jahreszeit", quelle:"Blend-Bibliothek", stimmung:"frisch · floral · luftig", beschreibung:"Bergamotte trägt, Lavender rundet ab — Lime gibt das Spritzige. Wie ein Fenster, das sich im April öffnet.", oils:[{n:"Bergamotte",a:5,d:6},{n:"Lavender",a:4,d:5},{n:"Lime",a:4,d:5}], hinweise:"März–Mai. Zart und luftig." },
   { name:"Sonnenterrasse", kat:"jahreszeit", quelle:"Blend-Bibliothek", stimmung:"sonnig · warm · mediterran", beschreibung:"Orange und Bergamotte im Sonnenlicht — Geranium gibt die blumige Note. Wie Kaffee auf der Terrasse, wenn es zum ersten Mal wirklich warm wird.", oils:[{n:"Orange",a:6,d:7},{n:"Bergamotte",a:4,d:5},{n:"Geranium",a:3,d:4}], hinweise:"April–Juni. Hebt die Stimmung sofort." },
-  { name:"Erste Terrasse", kat:"jahreszeit", quelle:"Blend-Bibliothek", stimmung:"frisch · einladend · weich-fruchtig", beschreibung:"Bergamotte trägt warm-fruchtig, Lemon spritzig, Geranium gibt den blumigen Mai. Wie der erste Kaffee, wenn die Terrasse wieder offen ist.", oils:[{n:"Bergamotte",a:3,d:4},{n:"Lemon",a:3,d:3},{n:"Geranium",a:2,d:3}], hinweise:"Mai-Morgen. Sanft aufweckend ohne Härte." },
-  { name:"Grüner Mittag", kat:"jahreszeit", quelle:"Blend-Bibliothek", stimmung:"klar · grün · mediterran", beschreibung:"Mediterrane Mittagsenergie: Rosemary klärt den Kopf, Lime gibt Frische, Cypress führt sanft in den Sommer.", oils:[{n:"Rosemary",a:3,d:4},{n:"Lime",a:3,d:3},{n:"Cypress",a:2,d:3}], hinweise:"Mai–Juni. Wach ohne Schärfe." },
-  { name:"Blütenabend", kat:"jahreszeit", quelle:"Blend-Bibliothek", stimmung:"sanft · blühend · weich", beschreibung:"Lavendel beruhigt, Bergamotte rundet weich-fruchtig, Ylang Ylang gibt blumige Tiefe. Mai-Abend, wenn der Tag noch nachklingt.", oils:[{n:"Lavender",a:4,d:5},{n:"Bergamotte",a:3,d:4},{n:"Ylang Ylang",a:1,d:1}], hinweise:"Ylang Ylang sehr intensiv — 1 Tropfen genügt, mehr wird schnell zu schwer." },
   // HAUS & REINIGUNG
   { name:"Frische Luft", kat:"haus", quelle:"Blend-Bibliothek", stimmung:"reinigend · clean", beschreibung:"Purification, Lemon und Tea Tree — das Standard-Trio gegen Gerüche.", oils:[{n:"Purification",a:7,d:9},{n:"Lemon",a:4,d:5},{n:"Tea Tree",a:3,d:4}], hinweise:"Nach dem Kochen, bei muffiger Luft." },
   { name:"Thieves Protect", kat:"haus", quelle:"Blend-Bibliothek", stimmung:"antibakteriell · warm", beschreibung:"Thieves arbeitet, Lemon und Orange geben Frische.", oils:[{n:"Thieves",a:7,d:9},{n:"Lemon",a:4,d:5},{n:"Orange",a:3,d:4}], hinweise:"Erkältungszeit, Gäste, nach Krankenstand." },
@@ -509,7 +593,72 @@ const blends = [
   { name:"Saubere Luft", kat:"buechlein", quelle:"Blend-Büchlein", stimmung:"klar · sauber · frisch", beschreibung:"Eingang, Küche, Luftreset.", oils:[{n:"Purification",a:3,d:4},{n:"Lemon",a:2,d:2},{n:"Tea Tree",a:1,d:1},{n:"Eucalyptus Globulus",a:2,d:3}], hinweise:"" },
   { name:"Durchatmen", kat:"buechlein", quelle:"Blend-Büchlein", stimmung:"luftig · kühl · frei", beschreibung:"Wenn mehr Weite im Raum gefragt ist.", oils:[{n:"R.C.",a:3,d:4},{n:"Eucalyptus Globulus",a:2,d:2},{n:"Peppermint",a:1,d:1},{n:"Idaho Grand Fir",a:2,d:3}], hinweise:"" },
   { name:"Waldgefühl", kat:"buechlein", quelle:"Blend-Büchlein", stimmung:"grün · ruhig · erdend", beschreibung:"Wie Fenster auf und tief in den Wald atmen.", oils:[{n:"Pine",a:2,d:3},{n:"Cypress",a:2,d:2},{n:"Idaho Grand Fir",a:2,d:2},{n:"Vetiver",a:1,d:1}], hinweise:"Optional: + 1 Orange" },
-  { name:"Fülle & gute Laune", kat:"buechlein", quelle:"Blend-Büchlein", stimmung:"freundlich · leicht festlich", beschreibung:"Besuch, gute Stimmung, Raumupgrade.", oils:[{n:"Abundance",a:3,d:4},{n:"Orange",a:3,d:3},{n:"Ylang Ylang",a:1,d:1},{n:"Geranium",a:1,d:2}], hinweise:"" }
+  { name:"Fülle & gute Laune", kat:"buechlein", quelle:"Blend-Büchlein", stimmung:"freundlich · leicht festlich", beschreibung:"Besuch, gute Stimmung, Raumupgrade.", oils:[{n:"Abundance",a:3,d:4},{n:"Orange",a:3,d:3},{n:"Ylang Ylang",a:1,d:1},{n:"Geranium",a:1,d:2}], hinweise:"" },
+
+  // ===== ERWEITERUNG MAI 2026 — Allergie-Saison =====
+  { name:"Pollenfrei", kat:"jahreszeit", quelle:"Erweiterung", stimmung:"klärend · frei · klassisch", beschreibung:"Das LLP-Trio (Lavender · Lemon · Peppermint) — der bekannteste Allergie-Begleiter. Lavender beruhigt, Lemon klärt, Peppermint öffnet.", oils:[{n:"Lavender",a:4,d:5},{n:"Lemon",a:4,d:5},{n:"Peppermint",a:3,d:4}], hinweise:"⚠️ Peppermint mit Vorsicht bei Mia & Schnuppi — kurz diffundieren (20 Min.), Tür offen lassen. Nicht für Kinder unter 10." },
+  { name:"Frühlings-Atemraum", kat:"jahreszeit", quelle:"Erweiterung", stimmung:"luftig · weit · sanfter", beschreibung:"Sanftere Pollen-Variante: R.C. statt Peppermint. Ideal für längere Diffuser-Sessions im Wohnzimmer.", oils:[{n:"R.C.",a:4,d:5},{n:"Lemon",a:4,d:5},{n:"Lavender",a:3,d:4}], hinweise:"R.C. enthält Eukalyptus & Menthol — Katzen-Zugang offen halten." },
+  { name:"Frühlings-Reset", kat:"jahreszeit", quelle:"Erweiterung", stimmung:"klar · belebend · clean", beschreibung:"Eucalyptus öffnet, Lemon hebt, Frankincense erdet — wenn der Kopf zwischen Pollen und Frühling klemmt.", oils:[{n:"Eucalyptus Globulus",a:3,d:4},{n:"Lemon",a:5,d:6},{n:"Frankincense",a:3,d:4}], hinweise:"Eucalyptus dosiert — Katzen Rückzugsmöglichkeit lassen." },
+  { name:"Bergamotte-Brise", kat:"jahreszeit", quelle:"Erweiterung", stimmung:"hell · sanft · stimmungshebend", beschreibung:"Cat-friendly Pollen-Alternative. Bergamotte gegen die Frühjahrs-Müdigkeit, Myrtle als sanfte Tea-Tree-Alternative.", oils:[{n:"Bergamotte",a:5,d:6},{n:"Myrtle",a:3,d:4},{n:"Lavender",a:3,d:4}], hinweise:"Sanfte Variante ohne Peppermint/Eucalyptus — gut für lange Sessions." },
+
+  // Yoga & Meditation
+  { name:"Ankommen", kat:"ritual", quelle:"Erweiterung", stimmung:"sanft · weich · einladend", beschreibung:"Vor der Matte. Frankincense vertieft den Atem, Lavender entspannt, Bergamotte hebt.", oils:[{n:"Frankincense",a:4,d:5},{n:"Lavender",a:4,d:5},{n:"Bergamotte",a:3,d:4}], hinweise:"Universell verträglich — auch für Anfängerinnen." },
+  { name:"Erden vor Yoga", kat:"ritual", quelle:"Erweiterung", stimmung:"tief · stabil · warm", beschreibung:"Cedarwood erdet, Frankincense zentriert, Orange wärmt — für Hatha & Vinyasa.", oils:[{n:"Cedarwood",a:4,d:5},{n:"Frankincense",a:4,d:5},{n:"Orange",a:3,d:4}], hinweise:"" },
+  { name:"Pranayama", kat:"ritual", quelle:"Erweiterung", stimmung:"weit · klar · still", beschreibung:"Atem-Praxis. White Forest öffnet, Frankincense vertieft, Bergamotte gibt Leichtigkeit.", oils:[{n:"White Forest",a:4,d:5},{n:"Frankincense",a:4,d:5},{n:"Bergamotte",a:2,d:3}], hinweise:"" },
+  { name:"Sonnengruß", kat:"ritual", quelle:"Erweiterung", stimmung:"strahlend · belebend · zitrisch", beschreibung:"Für aktive Yoga-Praxis am Morgen. Drei Zitrusöle, die wachmachen ohne aufzudrehen.", oils:[{n:"Grapefruit",a:4,d:5},{n:"Bergamotte",a:4,d:5},{n:"Lime",a:3,d:4}], hinweise:"" },
+  { name:"Yin Yoga", kat:"ritual", quelle:"Erweiterung", stimmung:"schwer · ruhig · loslassen", beschreibung:"Lange Halte-Phasen brauchen tiefe Erdung. Vetiver hält, Lavender löst, Cedarwood begleitet.", oils:[{n:"Vetiver",a:2,d:3},{n:"Lavender",a:5,d:6},{n:"Cedarwood",a:3,d:4}], hinweise:"Vetiver sehr intensiv — sparsam dosieren." },
+  { name:"Atemmeditation", kat:"ritual", quelle:"Erweiterung", stimmung:"frei · leicht · klar", beschreibung:"Frankincense für die Tiefe, Cypress für den Übergang, Lavender für die Beruhigung.", oils:[{n:"Frankincense",a:4,d:5},{n:"Cypress",a:4,d:5},{n:"Lavender",a:3,d:4}], hinweise:"" },
+  { name:"Mantra-Stunde", kat:"ritual", quelle:"Erweiterung", stimmung:"meditativ · holzig · spirituell", beschreibung:"Drei Nadelbaum-/Harzöle in Balance. Für Mantra-Praxis, Atemzählung, stille Sitzungen.", oils:[{n:"Idaho Grand Fir",a:4,d:5},{n:"Frankincense",a:4,d:5},{n:"Northern Lights Black Spruce",a:3,d:4}], hinweise:"Sehr beruhigend — auch abendlich nutzbar." },
+
+  // Schreiben & Kreatives
+  { name:"Schreibflow", kat:"fokus", quelle:"Erweiterung", stimmung:"konzentriert · weit · ausgewogen", beschreibung:"Bergamotte hebt die Stimmung, Frankincense vertieft den Fokus, Idaho Grand Fir hält wach.", oils:[{n:"Bergamotte",a:4,d:5},{n:"Frankincense",a:4,d:5},{n:"Idaho Grand Fir",a:3,d:4}], hinweise:"Mein Lieblings-Blend für lange Texte." },
+  { name:"Kreatives Studio", kat:"fokus", quelle:"Erweiterung", stimmung:"offen · spielerisch · belebend", beschreibung:"Inspiration für die Idee, Orange für die Leichtigkeit, Cedarwood für die Erdung — kreatives Arbeiten ohne Verzetteln.", oils:[{n:"Inspiration",a:5,d:6},{n:"Orange",a:4,d:5},{n:"Cedarwood",a:2,d:3}], hinweise:"" },
+  { name:"Journal-Stunde", kat:"fokus", quelle:"Erweiterung", stimmung:"weich · ehrlich · ruhig", beschreibung:"Für Tagebuch, Reflexion, ehrliche Selbstgespräche. Frankincense für Tiefe, Lavender für Sanftheit, Bergamotte für Wärme.", oils:[{n:"Frankincense",a:4,d:5},{n:"Lavender",a:4,d:5},{n:"Bergamotte",a:3,d:4}], hinweise:"" },
+
+  // Hosting & Slow Living
+  { name:"Erste Gäste", kat:"haus", quelle:"Erweiterung", stimmung:"warm · einladend · floral", beschreibung:"Wenn jemand zur Tür hereinkommt: Orange als Wärme, Geranium als Wohlfühl-Note, Bergamotte als Eleganz.", oils:[{n:"Orange",a:5,d:6},{n:"Geranium",a:4,d:5},{n:"Bergamotte",a:3,d:4}], hinweise:"" },
+  { name:"Slow Dinner", kat:"haus", quelle:"Erweiterung", stimmung:"behaglich · würzig-warm · vertraut", beschreibung:"Für längere Abende mit Freundinnen. Stress Away als Basis, Cinnamon Roll für Tiefe, Orange für Frische.", oils:[{n:"Stress Away",a:5,d:6},{n:"Cinnamon Roll",a:2,d:3},{n:"Orange",a:4,d:5}], hinweise:"Cinnamon Roll sparsam — wenig genügt." },
+  { name:"Brunch-Sonne", kat:"haus", quelle:"Erweiterung", stimmung:"hell · sonnig · spritzig", beschreibung:"Drei Zitrusöle für den Vormittag mit Eierspeis & Kaffee.", oils:[{n:"Grapefruit",a:5,d:6},{n:"Orange",a:4,d:5},{n:"Lime",a:3,d:4}], hinweise:"" },
+  { name:"Glühwein-Stimmung", kat:"haus", quelle:"Erweiterung", stimmung:"festlich · würzig · winterlich", beschreibung:"Adventbesuch, Punschabend, Christkindlmarkt-Feeling zuhause. Christmas Spirit + Pine + Orange.", oils:[{n:"Christmas Spirit",a:5,d:6},{n:"Pine",a:3,d:4},{n:"Orange",a:4,d:5}], hinweise:"Enthält Zimt — Tür offen lassen, kurze Sessions." },
+
+  // Romantik & Selbstliebe
+  { name:"Vertraut", kat:"emotion", quelle:"Erweiterung", stimmung:"warm · sinnlich · weich", beschreibung:"Ylang Ylang öffnet das Herz, Bergamotte mildert die Schwere, Frankincense hält die Tiefe.", oils:[{n:"Ylang Ylang",a:2,d:3},{n:"Bergamotte",a:5,d:6},{n:"Frankincense",a:3,d:4}], hinweise:"Ylang Ylang sparsam — sehr intensiv." },
+  { name:"Sinnlich", kat:"emotion", quelle:"Erweiterung", stimmung:"tief · feminin · samtig", beschreibung:"Rose und Geranium auf Cedarwood-Erdung — für eine zweite Schicht Selbstwahrnehmung.", oils:[{n:"Rose",a:1,d:2},{n:"Geranium",a:5,d:6},{n:"Cedarwood",a:3,d:4}], hinweise:"Rose extrem dosiert — 1 Tropfen reicht." },
+  { name:"Liebesbrief", kat:"emotion", quelle:"Erweiterung", stimmung:"hell · verspielt · warm", beschreibung:"Pink Champagne als Star, Joy als Wärme, Frankincense als Echtheit.", oils:[{n:"Pink Champagne",a:5,d:6},{n:"Joy",a:3,d:4},{n:"Frankincense",a:2,d:3}], hinweise:"" },
+
+  // Sonn- & Selbstfürsorge-Tage
+  { name:"Sonntagmorgen", kat:"ritual", quelle:"Erweiterung", stimmung:"weich · sanft · entschleunigt", beschreibung:"Bergamotte trägt, Lavender beruhigt, Orange wärmt — keine Eile, kein Wecker, nur Kaffee.", oils:[{n:"Bergamotte",a:5,d:6},{n:"Lavender",a:3,d:4},{n:"Orange",a:3,d:4}], hinweise:"" },
+  { name:"Sonntagabend Reset", kat:"ritual", quelle:"Erweiterung", stimmung:"klar · ordentlich · vorbereitend", beschreibung:"Vor dem Montag: Wäsche, Wochenplanung, kurzes Aufräumen. Purification + Lemon + Lavender.", oils:[{n:"Purification",a:5,d:6},{n:"Lemon",a:4,d:5},{n:"Lavender",a:3,d:4}], hinweise:"Auch nach dem Kochen — neutralisiert Gerüche." },
+  { name:"Bücher-Stunde", kat:"ritual", quelle:"Erweiterung", stimmung:"warm · still · holzig", beschreibung:"Cedarwood gibt das Bibliotheks-Gefühl, Vanilla die Wärme, Frankincense den Atem.", oils:[{n:"Cedarwood",a:4,d:5},{n:"Vanilla",a:3,d:4},{n:"Frankincense",a:3,d:4}], hinweise:"" },
+  { name:"Bad einlassen", kat:"ritual", quelle:"Erweiterung", stimmung:"floral · pflegend · weich", beschreibung:"Während die Wanne läuft: Lavender + Geranium + Bergamotte als Vorgeschmack.", oils:[{n:"Lavender",a:5,d:6},{n:"Geranium",a:3,d:4},{n:"Bergamotte",a:3,d:4}], hinweise:"" },
+
+  // Erkältung & Krankenpflege
+  { name:"Drei-Stufen-Schutz", kat:"haus", quelle:"Erweiterung", stimmung:"schützend · würzig · klar", beschreibung:"Wenn jemand im Haus erkältet ist: Thieves antibakteriell, Eucalyptus öffnet, Lemon klärt.", oils:[{n:"Thieves",a:4,d:5},{n:"Eucalyptus Globulus",a:3,d:4},{n:"Lemon",a:4,d:5}], hinweise:"Tür offen halten — Eucalyptus & Thieves intensiv. Katzen-Rückzug sicherstellen." },
+  { name:"Halsweh-Begleiter", kat:"haus", quelle:"Erweiterung", stimmung:"sanft · pflegend · warm", beschreibung:"Sanfter als Drei-Stufen-Schutz. Für die ersten Anzeichen, wenn der Hals kratzt.", oils:[{n:"R.C.",a:4,d:5},{n:"Frankincense",a:3,d:4},{n:"Lavender",a:3,d:4}], hinweise:"" },
+  { name:"Klare Nase", kat:"haus", quelle:"Erweiterung", stimmung:"frei · kühl · medizinisch", beschreibung:"Wenn die Nase zu ist: Eucalyptus + Myrtle (sanfter) + Peppermint öffnen sofort.", oils:[{n:"Eucalyptus Globulus",a:3,d:4},{n:"Myrtle",a:3,d:4},{n:"Peppermint",a:2,d:3}], hinweise:"Kurze Sessions (15–20 Min.) — sehr intensiv. Nicht für Kinder unter 10." },
+  { name:"Dampfbad-Diffusor", kat:"haus", quelle:"Erweiterung", stimmung:"badehaus · waldig · kraftvoll", beschreibung:"Wenn das Dampfbad nicht zur Hand ist: Eucalyptus + Pine + Lavender im Diffusor während der heißen Dusche.", oils:[{n:"Eucalyptus Globulus",a:3,d:4},{n:"Pine",a:4,d:5},{n:"Lavender",a:3,d:4}], hinweise:"" },
+
+  // Stille & Inneres Ankommen
+  { name:"Letzte halbe Stunde", kat:"abend", quelle:"Erweiterung", stimmung:"weich · vorbereitend · ruhig", beschreibung:"30 Minuten vorm Schlafen: Cedarwood, Lavender, Vanilla — sanftes Herunterfahren.", oils:[{n:"Cedarwood",a:3,d:4},{n:"Lavender",a:5,d:6},{n:"Vanilla",a:2,d:3}], hinweise:"" },
+  { name:"Nordlicht", kat:"abend", quelle:"Erweiterung", stimmung:"erdend · weit · friedlich", beschreibung:"Northern Lights Black Spruce als Hauptöl, Lavender und Frankincense als Begleiter.", oils:[{n:"Northern Lights Black Spruce",a:4,d:5},{n:"Lavender",a:4,d:5},{n:"Frankincense",a:3,d:4}], hinweise:"" },
+  { name:"Stille im Bad", kat:"abend", quelle:"Erweiterung", stimmung:"meditativ · tief · zurückgezogen", beschreibung:"Im Badezimmer-Diffusor während des Bads: Frankincense + Lavender + Vetiver.", oils:[{n:"Frankincense",a:4,d:5},{n:"Lavender",a:4,d:5},{n:"Vetiver",a:1,d:2}], hinweise:"Vetiver minimal — nur 1–2 Tropfen." },
+
+  // ===== WUNSCHLISTE — noch nicht in Sammlung =====
+  { name:"Sleep Now", kat:"schlaf", quelle:"Wunschliste", status:"wishlist", stimmung:"klassisch · weich · einlullend", beschreibung:"Der bekannteste Schlaf-Blend in der YL-Welt. Tangerine als Kinderzitrus, Lavender, Cedarwood.", oils:[{n:"Tangerine",a:5,d:6},{n:"Lavender",a:4,d:5},{n:"Cedarwood",a:3,d:4}], hinweise:"" },
+  { name:"Sweet Dreams", kat:"schlaf", quelle:"Wunschliste", status:"wishlist", stimmung:"warm · cremig · sanft", beschreibung:"Tangerine + Stress Away + Vanilla — wie eine warme Decke.", oils:[{n:"Tangerine",a:4,d:5},{n:"Stress Away",a:4,d:5},{n:"Vanilla",a:3,d:4}], hinweise:"" },
+  { name:"Tiefe Meditation", kat:"ritual", quelle:"Wunschliste", status:"wishlist", stimmung:"sakral · still · transzendent", beschreibung:"Sacred Sandalwood, Frankincense und Cedarwood — die drei klassischen Meditationsöle. Aromatherapie-Klassiker.", oils:[{n:"Sacred Sandalwood",a:3,d:4},{n:"Frankincense",a:4,d:5},{n:"Cedarwood",a:3,d:4}], hinweise:"Sandalwood sehr intensiv — sparsam." },
+  { name:"Heilige Stille", kat:"ritual", quelle:"Wunschliste", status:"wishlist", stimmung:"weich · spirituell · zentriert", beschreibung:"Sandalwood mit Lavender und Bergamotte — eine sanftere Meditations-Variante.", oils:[{n:"Sacred Sandalwood",a:3,d:4},{n:"Lavender",a:4,d:5},{n:"Bergamotte",a:3,d:4}], hinweise:"" },
+  { name:"Erde umarmen", kat:"emotion", quelle:"Wunschliste", status:"wishlist", stimmung:"erdend · stabil · tief", beschreibung:"Patchouli, Vetiver und Frankincense — die drei erdendsten Öle in einer Mischung.", oils:[{n:"Patchouli",a:3,d:4},{n:"Vetiver",a:1,d:2},{n:"Frankincense",a:4,d:5}], hinweise:"Patchouli intensiv — sparsam dosieren." },
+  { name:"Kinderschlaf", kat:"schlaf", quelle:"Wunschliste", status:"wishlist", stimmung:"sanft · sicher · familienfreundlich", beschreibung:"Roman Chamomile, Lavender und Tangerine — der klassischste Familien-Schlaf-Blend.", oils:[{n:"Roman Chamomile",a:3,d:4},{n:"Lavender",a:5,d:6},{n:"Tangerine",a:3,d:4}], hinweise:"Sehr sanft — auch für Kinder ab 6 Monate (verdünnt im Diffuser)." },
+  { name:"Cat-Safer Mint", kat:"morgen", quelle:"Wunschliste", status:"wishlist", stimmung:"belebend · sanft · familientauglich", beschreibung:"Spearmint statt Peppermint — gleicher Frische-Effekt, deutlich freundlicher zu Mia & Schnuppi.", oils:[{n:"Spearmint",a:4,d:5},{n:"Lemon",a:4,d:5},{n:"Lavender",a:3,d:4}], hinweise:"Trotzdem Tür offen lassen, Katzen-Zugang." },
+  { name:"Sanfte Konzentration", kat:"fokus", quelle:"Wunschliste", status:"wishlist", stimmung:"klar · mild · familientauglich", beschreibung:"Spearmint, Lemon, Frankincense — kinderfreundliche Fokus-Variante für Homeoffice mit Familie im Haus.", oils:[{n:"Spearmint",a:3,d:4},{n:"Lemon",a:4,d:5},{n:"Frankincense",a:3,d:4}], hinweise:"" },
+  { name:"Hormonbalance", kat:"emotion", quelle:"Wunschliste", status:"wishlist", stimmung:"weiblich · ausgleichend · warm", beschreibung:"Clary Sage, Geranium und Lavender — der Frauenthemen-Klassiker im Diffuser.", oils:[{n:"Clary Sage",a:3,d:4},{n:"Geranium",a:4,d:5},{n:"Lavender",a:3,d:4}], hinweise:"⚠️ NICHT in der Schwangerschaft (Clary Sage)." },
+  { name:"Wechseljahre-Sanft", kat:"emotion", quelle:"Wunschliste", status:"wishlist", stimmung:"ausgleichend · würdevoll · warm", beschreibung:"Clary Sage, Frankincense und Bergamotte — für die zweite Lebenshälfte.", oils:[{n:"Clary Sage",a:3,d:4},{n:"Frankincense",a:4,d:5},{n:"Bergamotte",a:3,d:4}], hinweise:"" },
+  { name:"Detox-Atemraum", kat:"jahreszeit", quelle:"Wunschliste", status:"wishlist", stimmung:"reinigend · klärend · grün", beschreibung:"Juniper Berry, Lemon, Cypress — Frühlings-Reinigungs-Blend mit Detox-Charakter.", oils:[{n:"Juniper Berry",a:3,d:4},{n:"Lemon",a:5,d:6},{n:"Cypress",a:3,d:4}], hinweise:"⚠️ Juniper Berry NICHT in der Schwangerschaft." },
+  { name:"Bohemian Soul", kat:"emotion", quelle:"Wunschliste", status:"wishlist", stimmung:"unkonventionell · warm · verspielt", beschreibung:"Patchouli, Bergamotte und Lavender — moderne Patchouli-Renaissance.", oils:[{n:"Patchouli",a:3,d:4},{n:"Bergamotte",a:5,d:6},{n:"Lavender",a:3,d:4}], hinweise:"" },
+  { name:"Liquid Calm Original", kat:"emotion", quelle:"Wunschliste", status:"wishlist", stimmung:"sofort beruhigend · tief · klassisch", beschreibung:"Joy, Patchouli, Cedarwood und Grapefruit — der bekannteste Calm-Blend in der YL-Community (Crazy Adventures Recipe).", oils:[{n:"Joy",a:3,d:4},{n:"Patchouli",a:2,d:3},{n:"Cedarwood",a:3,d:4},{n:"Grapefruit",a:3,d:4}], hinweise:"" },
+  { name:"Hosting Premium", kat:"haus", quelle:"Wunschliste", status:"wishlist", stimmung:"einladend · luxuriös · einzigartig", beschreibung:"Gathering, Orange und Bergamotte — Hosting für besondere Anlässe.", oils:[{n:"Gathering",a:4,d:5},{n:"Orange",a:4,d:5},{n:"Bergamotte",a:3,d:4}], hinweise:"" },
+  { name:"Dragon Time", kat:"emotion", quelle:"Wunschliste", status:"wishlist", stimmung:"weiblich · wärmend · ausgleichend", beschreibung:"Dragon Time pur mit Geranium und Clary Sage geboostet — Frauen-Diffuser-Blend für Zyklus-Tage.", oils:[{n:"Dragon Time",a:4,d:5},{n:"Geranium",a:3,d:4},{n:"Clary Sage",a:2,d:3}], hinweise:"⚠️ NICHT in der Schwangerschaft." }
 ];
 
 // ===== DATA: ROLL-ONS =====
@@ -547,7 +696,52 @@ const rollons = [
   { name:"Soft Bravery", kat:"mut", beschreibung:"Sanfter Mut und Sicherheit.", oils:[{n:"Valor",tr:2},{n:"Lavender",tr:2},{n:"Copaiba",tr:2}], flasche:"10 mL", traeger:"Trägeröl", anwendung:"Handgelenke, Wirbelsäule", hinweise:"" },
   { name:"Home is my Place", kat:"geborgen", beschreibung:"Geborgenheit zuhause.", oils:[{n:"Lavender",tr:3},{n:"Orange",tr:2},{n:"Copaiba",tr:2},{n:"Grounding",tr:1}], flasche:"10 mL", traeger:"Trägeröl", anwendung:"Handgelenke, Brust", hinweise:"" },
   { name:"Cozy Holiday", kat:"geborgen", beschreibung:"Gemütliche Feiertagsstimmung.", oils:[{n:"Christmas Spirit",tr:2},{n:"Orange",tr:2},{n:"Copaiba",tr:2},{n:"Stress Away",tr:1}], flasche:"10 mL", traeger:"Trägeröl", anwendung:"Handgelenke", hinweise:"" },
-  { name:"Snow Day", kat:"geborgen", beschreibung:"Wintertag-Geborgenheit.", oils:[{n:"Lavender",tr:2},{n:"Frankincense",tr:2},{n:"Orange",tr:2},{n:"Inspiration",tr:1}], flasche:"10 mL", traeger:"Trägeröl", anwendung:"Handgelenke", hinweise:"" }
+  { name:"Snow Day", kat:"geborgen", beschreibung:"Wintertag-Geborgenheit.", oils:[{n:"Lavender",tr:2},{n:"Frankincense",tr:2},{n:"Orange",tr:2},{n:"Inspiration",tr:1}], flasche:"10 mL", traeger:"Trägeröl", anwendung:"Handgelenke", hinweise:"" },
+
+  // ===== ERWEITERUNG MAI 2026 =====
+  // Allergie & Atemwege
+  { name:"Pollen-Stop Roll-on", kat:"muskeln", beschreibung:"Das LLP-Trio als Roll-on für unterwegs — Schläfen, Nasenflügel-Außen, Nacken.", oils:[{n:"Lavender",tr:3},{n:"Lemon",tr:3},{n:"Peppermint",tr:3}], flasche:"10 mL", traeger:"Trägeröl", anwendung:"Schläfen, Nasenflügel-Außen (NICHT in die Nase), Nacken", hinweise:"Lemon photosensibilisierend — vor Sonne meiden. Nicht für Kinder unter 10." },
+  { name:"Atemraum Roll-on", kat:"muskeln", beschreibung:"Sanftere Variante für längeres Tragen — auf der Brust öffnet sich der Atem.", oils:[{n:"R.C.",tr:3},{n:"Eucalyptus Globulus",tr:2},{n:"Frankincense",tr:2}], flasche:"10 mL", traeger:"Trägeröl", anwendung:"Brustbein, Schlüsselbeinbereich", hinweise:"Eukalyptus-Familie — nicht für Kinder unter 10." },
+  { name:"Sinus-Klar", kat:"muskeln", beschreibung:"Bei verstopfter Stirn und Wangenhöhlen — Roll-on um die Augenpartie HERUM, nicht direkt drauf.", oils:[{n:"Peppermint",tr:2},{n:"Lavender",tr:3},{n:"Eucalyptus Globulus",tr:2}], flasche:"10 mL", traeger:"Trägeröl", anwendung:"Stirn, Wangenknochen, Hals — Augen aussparen", hinweise:"⚠️ Augenkontakt vermeiden. Nicht für Kinder unter 10." },
+
+  // Reise & Bewegung
+  { name:"Reisebegleiter", kat:"muskeln", beschreibung:"Bei Reise-Übelkeit, Autofahrten, Schiff. Auf den Bauch und hinter die Ohren.", oils:[{n:"DiGize",tr:3},{n:"Peppermint",tr:2},{n:"Lavender",tr:2}], flasche:"10 mL", traeger:"Trägeröl", anwendung:"Bauch (im Uhrzeigersinn), hinter Ohren, P6-Punkt am Handgelenk", hinweise:"" },
+  { name:"Jetlag Reset · Morgen", kat:"morgen", beschreibung:"Nach dem Flug, östliche Richtung: Wachmach-Roll-on für die Schläfen.", oils:[{n:"Peppermint",tr:2},{n:"Lemon",tr:2},{n:"Bergamotte",tr:2},{n:"En-R-Gee",tr:1}], flasche:"10 mL", traeger:"Trägeröl", anwendung:"Schläfen, Nacken, Handgelenke", hinweise:"Lemon & Bergamotte photosensibilisierend." },
+  { name:"Jetlag Reset · Abend", kat:"abend", beschreibung:"Nach dem Flug, westliche Richtung: Einschlaf-Roll-on auf die Fußsohlen.", oils:[{n:"Lavender",tr:3},{n:"Cedarwood",tr:2},{n:"Frankincense",tr:2}], flasche:"10 mL", traeger:"Trägeröl", anwendung:"Fußsohlen (Vita-Flex-Punkte), Nacken", hinweise:"" },
+  { name:"Hotel Calm", kat:"abend", beschreibung:"In fremden Betten anders einschlafen. Stress Away vertraut, Lavender beruhigt, Vetiver erdet.", oils:[{n:"Stress Away",tr:3},{n:"Lavender",tr:2},{n:"Vetiver",tr:1}], flasche:"10 mL", traeger:"Trägeröl", anwendung:"Handgelenke, Brustbein, Fußsohlen", hinweise:"Vetiver minimal — sehr intensiv." },
+
+  // Signature-Parfüm-Roller
+  { name:"Soft Floral · Signature", kat:"topisch", beschreibung:"Feminin, blumig, leicht — als Tagesparfüm. Vier-Öl-Komposition.", oils:[{n:"Geranium",tr:3},{n:"Lavender",tr:3},{n:"Rose",tr:1},{n:"Frankincense",tr:2}], flasche:"10 mL", traeger:"Bio-Jojoba", anwendung:"Handgelenke, Hals, hinter Ohren", hinweise:"Rose minimal — 1 Tropfen reicht." },
+  { name:"Citrus Garden · Signature", kat:"topisch", beschreibung:"Sonnig, leicht, sportlich — als sommerliches Tagesparfüm.", oils:[{n:"Bergamotte",tr:3},{n:"Grapefruit",tr:3},{n:"Lavender",tr:2}], flasche:"10 mL", traeger:"Bio-Jojoba", anwendung:"Handgelenke, Hals", hinweise:"Photosensibilisierend — nicht direkt vor der Sonne auftragen." },
+  { name:"Forest Walker · Signature", kat:"topisch", beschreibung:"Erdige Eleganz: Cedarwood, Idaho Grand Fir, Bergamotte. Unisex, ganzjährig.", oils:[{n:"Cedarwood",tr:3},{n:"Idaho Grand Fir",tr:2},{n:"Bergamotte",tr:3}], flasche:"10 mL", traeger:"Bio-Jojoba", anwendung:"Handgelenke, Hals, Dekolleté", hinweise:"" },
+  { name:"Quiet Luxury · Signature", kat:"topisch", beschreibung:"Dezent, warm, harzig. Wie ein guter Schal — fällt nicht auf, vermisst man aber.", oils:[{n:"Frankincense",tr:3},{n:"Vanilla",tr:2},{n:"Bergamotte",tr:2},{n:"Cedarwood",tr:1}], flasche:"10 mL", traeger:"Bio-Jojoba", anwendung:"Handgelenke, Hals", hinweise:"" },
+
+  // Selbstvertrauen & Auftritte
+  { name:"Big Day Roller", kat:"mut", beschreibung:"Vor Vorträgen, Hochzeiten, prüfungsähnlichen Tagen. Valor erdet, Frankincense vertieft, Bergamotte hebt, Joy bringt das Lächeln.", oils:[{n:"Valor",tr:2},{n:"Frankincense",tr:2},{n:"Bergamotte",tr:2},{n:"Joy",tr:1}], flasche:"10 mL", traeger:"Trägeröl", anwendung:"Handgelenke, Brustbein, Fußsohlen", hinweise:"" },
+  { name:"First Impression", kat:"mut", beschreibung:"Erstes Treffen, Bewerbungsgespräch, neue Kundin. Charmant aber sicher.", oils:[{n:"Bergamotte",tr:3},{n:"Frankincense",tr:2},{n:"Geranium",tr:2}], flasche:"10 mL", traeger:"Trägeröl", anwendung:"Handgelenke, Hals", hinweise:"" },
+
+  // Emotionale Begleiter
+  { name:"Heart Hold", kat:"geborgen", beschreibung:"Bei Trauer, Abschied, Heimweh. Auf den Herzbereich, mehrmals täglich.", oils:[{n:"Joy",tr:2},{n:"Frankincense",tr:2},{n:"Geranium",tr:2},{n:"Bergamotte",tr:1}], flasche:"10 mL", traeger:"Trägeröl", anwendung:"Herzbereich, Handgelenke", hinweise:"" },
+  { name:"Gentle Comfort", kat:"geborgen", beschreibung:"Wenn der Tag zu viel war. Stress Away als Basis, Lavender und Vanilla als weiche Decke.", oils:[{n:"Stress Away",tr:3},{n:"Lavender",tr:2},{n:"Vanilla",tr:2}], flasche:"10 mL", traeger:"Trägeröl", anwendung:"Handgelenke, Brustbein, Schläfen", hinweise:"" },
+  { name:"Selbstmitgefühl", kat:"geborgen", beschreibung:"Wenn die innere Kritikerin laut wird. Rose, Geranium, Lavender — direkt aufs Herz.", oils:[{n:"Rose",tr:1},{n:"Geranium",tr:3},{n:"Lavender",tr:3}], flasche:"10 mL", traeger:"Bio-Arganöl", anwendung:"Herzbereich, Handgelenke", hinweise:"Rose minimal." },
+
+  // Praktisches & Alltag
+  { name:"Insektenstich-Roller", kat:"topisch", beschreibung:"Direkt nach dem Stich auf die Stelle. Lavender beruhigt, Tea Tree desinfiziert, Melrose unterstützt die Haut.", oils:[{n:"Lavender",tr:5},{n:"Tea Tree",tr:3},{n:"Melrose",tr:3}], flasche:"10 mL", traeger:"Trägeröl", anwendung:"Direkt auf den Stich, mehrmals", hinweise:"⚠️ Nicht in Reichweite von Mia & Schnuppi anwenden. Tea Tree für Katzen toxisch — Hände waschen vor Streichelkontakt." },
+  { name:"After-Sun Soothe", kat:"topisch", beschreibung:"Nach langem Tag in der Sonne — kühlend, hautberuhigend.", oils:[{n:"Lavender",tr:5},{n:"Frankincense",tr:3},{n:"Peppermint",tr:1}], flasche:"10 mL", traeger:"Bio-Aloe-Vera-Öl oder V-6", anwendung:"Sonnenbeanspruchte Haut — nicht ins Gesicht in Augennähe", hinweise:"Kein Ersatz für Sonnenschutz." },
+  { name:"Magen-Wohl", kat:"muskeln", beschreibung:"Bei Völlegefühl, leichter Übelkeit, Reisekost-Bauch. Im Uhrzeigersinn auf den Bauch.", oils:[{n:"DiGize",tr:3},{n:"Peppermint",tr:2},{n:"Frankincense",tr:2}], flasche:"10 mL", traeger:"Trägeröl", anwendung:"Bauch im Uhrzeigersinn", hinweise:"Nicht in der Schwangerschaft." },
+  { name:"Hand-Frische unterwegs", kat:"topisch", beschreibung:"Nach Türklinken, öffentlichen Verkehrsmitteln. Auf die Handinnenflächen, kurz reiben.", oils:[{n:"Thieves",tr:3},{n:"Lemon",tr:2},{n:"Lavender",tr:2}], flasche:"10 mL", traeger:"Trägeröl", anwendung:"Handinnenflächen, Handrücken", hinweise:"Thieves enthält Nelke — bei empfindlicher Haut Verdünnung erhöhen." },
+
+  // ===== WUNSCHLISTE — noch nicht in Sammlung =====
+  { name:"Tranquil Klassiker", kat:"abend", status:"wishlist", beschreibung:"Tranquil pur als Roll-on. Pre-formulierter YL-Klassiker für Anspannung — wird nur auf Schläfen und Nacken aufgetragen.", oils:[{n:"Tranquil Roll-on",tr:0}], flasche:"10 mL (fertig)", traeger:"YL-Trägeröl-Mix", anwendung:"Schläfen, Nacken, Handgelenke — direkt aus dem Roll-on", hinweise:"Pre-formuliert — keine eigene Mischung nötig." },
+  { name:"Deep Relief Klassiker", kat:"muskeln", status:"wishlist", beschreibung:"Deep Relief pur als Roll-on. Pre-formulierter YL-Klassiker für Muskeln und Verspannungen.", oils:[{n:"Deep Relief Roll-on",tr:0}], flasche:"10 mL (fertig)", traeger:"YL-Trägeröl-Mix", anwendung:"Verspannte Muskeln, Nacken, Schultern", hinweise:"⚠️ Enthält Wintergrün — NICHT in der Schwangerschaft." },
+  { name:"Breathe Again Klassiker", kat:"muskeln", status:"wishlist", beschreibung:"Breathe Again pur als Roll-on. Pre-formulierter Atemwegs-Roll-on für Reise und Erkältung.", oils:[{n:"Breathe Again Roll-on",tr:0}], flasche:"10 mL (fertig)", traeger:"YL-Trägeröl-Mix", anwendung:"Brustbein, Nacken, hinter Ohren", hinweise:"" },
+  { name:"Kid-Calm", kat:"abend", status:"wishlist", beschreibung:"Sanfter Roll-on für Kinder — Tangerine, Lavender, Cedarwood, Roman Chamomile. Auf Fußsohlen vorm Schlafen.", oils:[{n:"Tangerine",tr:3},{n:"Lavender",tr:3},{n:"Cedarwood",tr:1},{n:"Roman Chamomile",tr:2}], flasche:"10 mL", traeger:"Trägeröl", anwendung:"Fußsohlen, Nacken — verdünnt für Kinder ab 2 Jahren", hinweise:"Für jüngere Kinder weiter verdünnen." },
+  { name:"Oud Whisper · Signature", kat:"topisch", status:"wishlist", beschreibung:"Tiefer Premium-Parfüm-Roller. Sandalwood, Vanilla, Frankincense — exotisch, abendtauglich, einzigartig.", oils:[{n:"Sacred Sandalwood",tr:3},{n:"Vanilla",tr:3},{n:"Frankincense",tr:3}], flasche:"10 mL", traeger:"Bio-Jojoba", anwendung:"Handgelenke, Hals, Dekolleté — abends", hinweise:"" },
+  { name:"Bohemian Soul · Signature", kat:"topisch", status:"wishlist", beschreibung:"Patchouli, Bergamotte, Lavender — moderner Bohemian-Style.", oils:[{n:"Patchouli",tr:2},{n:"Bergamotte",tr:4},{n:"Lavender",tr:3}], flasche:"10 mL", traeger:"Bio-Jojoba", anwendung:"Handgelenke, Hals", hinweise:"" },
+  { name:"Narben-Roll-on", kat:"topisch", status:"wishlist", beschreibung:"Helichrysum, Lavender, Frankincense — der klassische Narben-Roll-on. 2× täglich auf vernarbtes Gewebe.", oils:[{n:"Helichrysum",tr:5},{n:"Lavender",tr:5},{n:"Frankincense",tr:5}], flasche:"10 mL", traeger:"Bio-Arganöl oder V-6", anwendung:"2× täglich auf Narbengewebe (auch alte Narben)", hinweise:"Geduld — sichtbare Effekte oft erst nach 4–8 Wochen." },
+  { name:"Tante Flo Original", kat:"topisch", status:"wishlist", beschreibung:"Cypress, Cistus, Geranium und Helichrysum — das Originalrezept für die ersten Zyklustage. Auf Unterbauch und Knöchel-Vita-Flex.", oils:[{n:"Cypress",tr:30},{n:"Cistus",tr:20},{n:"Geranium",tr:10},{n:"Helichrysum",tr:10}], flasche:"15 mL Roller", traeger:"V-6 oder Trägeröl", anwendung:"1–3× täglich auf Unterbauch & Knöchel", hinweise:"Original-Rezept — vollständig mit Helichrysum." },
+  { name:"Zyklus-Begleiter Original", kat:"zyklus", status:"wishlist", beschreibung:"Clary Sage, Lavender, Geranium — der weibliche Zyklus-Klassiker.", oils:[{n:"Clary Sage",tr:3},{n:"Lavender",tr:3},{n:"Geranium",tr:2}], flasche:"10 mL", traeger:"Trägeröl", anwendung:"Unterbauch, innere Knöchel", hinweise:"⚠️ NICHT in der Schwangerschaft." },
+  { name:"Wechseljahre-Sanft", kat:"zyklus", status:"wishlist", beschreibung:"Clary Sage, Frankincense, Bergamotte — sanfte Begleitung für die zweite Lebenshälfte.", oils:[{n:"Clary Sage",tr:2},{n:"Frankincense",tr:3},{n:"Bergamotte",tr:3}], flasche:"10 mL", traeger:"Trägeröl", anwendung:"Handgelenke, Nacken, Innenseite Oberschenkel", hinweise:"" }
 ];
 
 // ===== DATA: DIY =====
@@ -589,10 +783,6 @@ const diy = [
     zutaten:"• ⅛ Tasse Magnesiumöl\n• 10 Tr. Tea Tree EO\n• 5 Tr. Lemon EO\n• 5 Tr. Purification EO\n• 1 EL Witch Hazel\n• Destilliertes Wasser in 60 mL Sprühflasche",
     zubereitung:"Alle Zutaten in Sprühflasche füllen. Vor jedem Gebrauch schütteln. Unter die Achseln sprühen & trocknen lassen. Zuerst Patch-Test bei empfindlicher Haut.",
     hinweise:"Magnesiumöl kann bei empfindlicher Haut anfangs leicht kribbeln — dann mehr Wasser verwenden." },
-  { name:"Ameisen-Stopp-Spray", typ:"reinigung", kat:"Schädlinge & Insekten", emoji:"🐜",
-    zutaten:"Für 250 mL Sprühflasche:\n• 200 ml lauwarmes Wasser\n• 50 ml weißer Essig\n• 8 Tr. Peppermint EO\n• 5 Tr. Lemon EO\n• 3 Tr. Tea Tree EO",
-    zubereitung:"Alle Zutaten in Sprühflasche füllen, vor jedem Gebrauch gut schütteln. Zuerst die Pheromonspur mit feuchtem Tuch entfernen. Dann das Spray gezielt an Eingangsstellen auftragen — Fensterrahmen, Türschwellen, Sockelleistenspalten. Alle 2–3 Tage erneuern, solange die Tiere kommen.",
-    hinweise:"⚠️ KATZENHAUSHALTE: Peppermint und Tea Tree sind in höherer Konzentration für Katzen problematisch. NUR an Eingangsstellen sprühen (Fensterrahmen, Türschwellen) — NICHT auf Bodenflächen, an denen die Katze läuft oder leckt. Räume nach dem Sprühen lüften.\n\n🐈 KATZENFREUNDLICHE VARIANTE: Peppermint weglassen → 10 Tr. Lemon + 3 Tr. Cedarwood + 3 Tr. Tea Tree. Milder, immer noch wirksam.\n\n❌ NIEMALS: Thieves Haushaltsreiniger im Garten, auf Terrassenfugen oder Beetränder — Nelkenöl ist phytotoxisch (registriertes Herbizid)." },
   { name:"Rosemary Mint Rasier-Creme", typ:"beauty", kat:"Rasur", emoji:"🪒",
     zutaten:"• 10 Tr. Peppermint EO\n• 10 Tr. Rosemary EO\n• ⅓ Tasse Sheabutter (oder Mangobutter)\n• ⅓ Tasse kaltgepresstes Kokosöl\n• ¼ Tasse Süßmandelöl (oder V-6)\n• 2 EL Natron\n• ½ TL Vitamin E (optional)",
     zubereitung:"Sheabutter & Kokosöl im Wasserbad schmelzen. Abkühlen lassen. EOs, Mandelöl & Vit. E einrühren. Im Kühlschrank kurz fest werden lassen. Raumtemperatur annehmen lassen. Natron zugeben. Mit Mixer aufschlagen bis cremig. In Glasgefäß füllen.",
@@ -761,7 +951,108 @@ const diy = [
   { name:"DIY Salt Scrub", typ:"beauty", kat:"Körperpflege", emoji:"🌊",
     zutaten:"• ⅔ feines Meersalz\n• ⅓ Massage-Öl (oder anderes Trägeröl)\n• Optional: 5–10 Tr. EO nach Wahl\n  (z.B. Lavender, Geranium, Grapefruit)",
     zubereitung:"In einem mittelgroßen Mason-Glas mischen. Im Duschbad sanft auf Schultern, Hals, Dekolleté, Oberschenkel einmassieren. Abspülen.",
-    hinweise:"Sanft exfolierend, nährend, belebend. Gut für eine regelmäßige Morgenpflegeroutine." }
+    hinweise:"Sanft exfolierend, nährend, belebend. Gut für eine regelmäßige Morgenpflegeroutine." },
+
+  // ===== ERWEITERUNG MAI 2026 =====
+  // Badesalze
+  { name:"Beruhigendes Lavendelbad", typ:"beauty", kat:"Badepflege", emoji:"🛁",
+    zutaten:"• 1 Tasse Epsomsalz (Magnesiumsulfat)\n• ½ Tasse Himalaya-Salz\n• ¼ Tasse Natron\n• 1 EL Trägeröl (Mandel oder Jojoba)\n• 8 Tr. Lavender\n• 4 Tr. Frankincense\n• 3 Tr. Geranium\n• Optional: getrocknete Lavendelblüten",
+    zubereitung:"Trägeröl mit ätherischen Ölen verrühren — das verteilt sie gleichmäßig im Bad. Mit Salzen und Natron mischen. In Glas füllen, 24 Std. ziehen lassen. Pro Bad ½–¾ Tasse ins fließende Wasser.",
+    hinweise:"Hält ca. 6 Monate. Wanne nach dem Bad gut spülen — Salz greift Dichtungen auf Dauer an." },
+
+  { name:"Muskelentspannungs-Bad", typ:"beauty", kat:"Badepflege", emoji:"💆",
+    zutaten:"• 1 Tasse Epsomsalz\n• ½ Tasse Magnesiumchlorid-Flocken\n• 1 EL V-6 Trägeröl\n• 6 Tr. Marjoram\n• 4 Tr. Copaiba\n• 4 Tr. Lavender\n• 2 Tr. Idaho Grand Fir",
+    zubereitung:"Öle mit Trägeröl verrühren. Mit Salzen mischen. ½ Tasse ins warme Bad geben. 20 Min. eintauchen.",
+    hinweise:"Nach körperlicher Anstrengung, langen Wandertagen, EMS-Training. Nicht in der Schwangerschaft." },
+
+  { name:"Detox-Fußbad", typ:"beauty", kat:"Körperpflege", emoji:"🦶",
+    zutaten:"• 1 Tasse Epsomsalz\n• ¼ Tasse Natron\n• 1 EL Apfelessig\n• 4 Tr. Cypress\n• 3 Tr. Lemon\n• 2 Tr. Rosemary",
+    zubereitung:"Salze und Natron in Fußbecken geben, mit warmem Wasser auflösen. Apfelessig und ätherische Öle dazu. 15–20 Min. eintauchen.",
+    hinweise:"Lemon photosensibilisierend — nicht direkt vor Sonnenexposition. Rosemary nicht in der Schwangerschaft." },
+
+  { name:"Erholungs-Fußbad nach Wandern", typ:"beauty", kat:"Körperpflege", emoji:"🥾",
+    zutaten:"• 1 Tasse Epsomsalz\n• 2 EL Natron\n• 1 EL V-6\n• 3 Tr. Peppermint\n• 4 Tr. Lavender\n• 3 Tr. Marjoram\n• 2 Tr. Copaiba",
+    zubereitung:"Öle mit V-6 verrühren. Mit Salz und Natron in heißes Wasser. 15 Min. Füße eintauchen.",
+    hinweise:"Peppermint kühlt — nicht zu lange. Hände waschen vor Kontakt mit Mia & Schnuppi." },
+
+  // Pillow & Linen Sprays
+  { name:"Sleep Pillow Mist", typ:"beauty", kat:"Schlafritual", emoji:"🌙",
+    zutaten:"• 100 mL Glas-Sprühflasche\n• 80 mL destilliertes Wasser\n• 15 mL alkoholfreier Witch Hazel\n• 1 TL Magnesiumöl (optional)\n• 25 Tr. Lavender\n• 8 Tr. Cedarwood\n• 5 Tr. Frankincense",
+    zubereitung:"Witch Hazel und Magnesiumöl in Sprühflasche füllen. Ätherische Öle dazugeben, schütteln. Mit destilliertem Wasser auffüllen. Vor jedem Gebrauch schütteln.",
+    hinweise:"Auf Kissenbezug 5–10 Min. vor dem Schlafen. Nicht direkt aufs Gesicht. Hält 6–8 Wochen." },
+
+  { name:"Frühlings-Wäschespray", typ:"beauty", kat:"Wäsche", emoji:"🌷",
+    zutaten:"• 200 mL Glas-Sprühflasche\n• 160 mL destilliertes Wasser\n• 30 mL Wodka oder Witch Hazel\n• 20 Tr. Lavender\n• 15 Tr. Bergamotte\n• 10 Tr. Lime",
+    zubereitung:"Alkohol/Witch Hazel in Flasche, Öle dazu, schütteln. Mit Wasser auffüllen. Vor jedem Gebrauch schütteln.",
+    hinweise:"Auf Bettwäsche, Handtücher, Geschirrtücher beim Aufhängen. Bergamotte/Lime photosensibilisierend — nicht direkt auf Haut." },
+
+  { name:"Yogamatten-Spray", typ:"beauty", kat:"Yoga", emoji:"🧘",
+    zutaten:"• 100 mL Glas-Sprühflasche\n• 75 mL destilliertes Wasser\n• 25 mL Witch Hazel\n• 12 Tr. Tea Tree\n• 8 Tr. Lemon\n• 8 Tr. Lavender",
+    zubereitung:"Alle Zutaten in Sprühflasche. Schütteln. Auf Matte sprühen, mit Mikrofasertuch nachwischen.",
+    hinweise:"⚠️ Tea Tree für Katzen toxisch — Matte gut trocknen lassen, bevor Mia & Schnuppi sich draufsetzen. Yogamatte vor Kontakt mindestens 30 Min. lüften." },
+
+  // Praktisches
+  { name:"Mottenschutz-Sachet", typ:"reinigung", kat:"Kleiderschrank", emoji:"👗",
+    zutaten:"• Kleine Stoffsäckchen (Baumwolle/Leinen)\n• Pro Säckchen: 1 EL getrocknete Lavendelblüten\n• 1 EL Cedarwood-Späne\n• Pro Säckchen: 5 Tr. Lavender\n• 3 Tr. Cedarwood\n• 2 Tr. Pine",
+    zubereitung:"Lavendelblüten und Cedarwood-Späne mischen. Mit ätherischen Ölen beträufeln, kurz ziehen lassen. In Säckchen füllen, zubinden.",
+    hinweise:"Alle 3–4 Monate mit ein paar Tropfen nachträufeln. Im Kleiderschrank, in Schubladen, in Schuhen. In geschlossenen Schubladen unbedenklich für Mia & Schnuppi." },
+
+  { name:"Gartenspray gegen Gelsen", typ:"reinigung", kat:"Outdoor", emoji:"🌿",
+    zutaten:"• 250 mL Glas-Sprühflasche\n• 200 mL destilliertes Wasser\n• 30 mL Wodka oder Witch Hazel\n• 20 Tr. Purification\n• 15 Tr. Lavender\n• 10 Tr. Eucalyptus Globulus\n• 5 Tr. Lemon",
+    zubereitung:"Alle Zutaten in Sprühflasche. Schütteln. Auf Terrasse, Garten-Möbel, Stoff-Sonnenschirm sprühen — NICHT auf Pflanzen.",
+    hinweise:"⚠️ NICHT auf Pflanzen sprühen — viele EOs sind phytotoxisch. Nur auf Möbel, Polster, Outdoor-Textilien. Kein Ersatz für Insektenschutz auf der Haut." },
+
+  { name:"Auto-Lüftungsclip-Mischung", typ:"reinigung", kat:"Auto", emoji:"🚗",
+    zutaten:"• Filz-Stoffstreifen (5×2 cm) oder Holz-Diffusor-Klipp\n• 8 Tr. Peppermint\n• 6 Tr. Lemon\n• 4 Tr. Lavender",
+    zubereitung:"Öle direkt auf Filz oder in Klipp tropfen. An Lüftungsschlitz befestigen. Wenn der Duft nachlässt, nachträufeln.",
+    hinweise:"Hält 2–3 Tage. Lemon photosensibilisierend — nicht auf Sitzbezüge tropfen." },
+
+  { name:"Hand-Hygiene Spray", typ:"reinigung", kat:"Körperpflege", emoji:"🤲",
+    zutaten:"• 60 mL kleine Sprühflasche\n• 40 mL Witch Hazel oder hochprozentiger Alkohol (mind. 60%)\n• 1 TL Aloe-Vera-Gel\n• 15 Tr. Thieves\n• 8 Tr. Lavender\n• 5 Tr. Lemon",
+    zubereitung:"Aloe und Witch Hazel/Alkohol in Flasche. Öle dazu, schütteln. Vor jedem Gebrauch schütteln.",
+    hinweise:"Kein Ersatz für medizinisches Desinfektionsmittel. Thieves enthält Nelke — bei empfindlicher Haut weniger dosieren." },
+
+  // Beauty-Erweiterung
+  { name:"Beruhigendes Gesichtsdampfbad", typ:"beauty", kat:"Gesichtspflege", emoji:"♨️",
+    zutaten:"• 1 große Schüssel\n• 1 L kochendes Wasser\n• 2 Tr. Lavender\n• 2 Tr. Frankincense\n• 1 Tr. Geranium\n• Großes Handtuch",
+    zubereitung:"Heißes Wasser in Schüssel, Öle hinzu. Gesicht über Schüssel halten (30 cm Abstand), Handtuch über Kopf. 5–10 Min. eintauchen, Augen geschlossen.",
+    hinweise:"⚠️ NICHT bei Rosacea, Couperose, Asthma. Augen während der Anwendung geschlossen halten. 1× pro Woche genügt." },
+
+  { name:"Hand-Creme Booster", typ:"beauty", kat:"Handpflege", emoji:"🌹",
+    zutaten:"• 50 mL gute neutrale Handcreme oder Sheabutter\n• 8 Tr. Frankincense\n• 6 Tr. Lavender\n• 4 Tr. Geranium\n• 2 Tr. Rose",
+    zubereitung:"Creme/Sheabutter in Glas füllen, Öle einrühren. Luftdicht verschließen, 24 Std. ziehen lassen.",
+    hinweise:"Reife Haut: Frankincense + Rose = Klassiker. Hält 2–3 Monate. Kühl lagern." },
+
+  { name:"Kopfhaut-Tonikum", typ:"beauty", kat:"Haarpflege", emoji:"💆‍♀️",
+    zutaten:"• 50 mL Sprühflasche\n• 30 mL alkoholfreier Witch Hazel\n• 1 EL Bio-Jojoba-Öl\n• 10 Tr. Rosemary\n• 8 Tr. Cedarwood\n• 5 Tr. Lavender\n• 3 Tr. Peppermint",
+    zubereitung:"Witch Hazel und Jojoba in Flasche. Öle dazu, schütteln. Mit destilliertem Wasser auffüllen.",
+    hinweise:"2–3× pro Woche auf Kopfhaut sprühen, einmassieren, 10 Min. einwirken, dann waschen. Rosemary nicht in der Schwangerschaft. Hände waschen vor Streichelkontakt mit Katzen." },
+
+  // ===== WUNSCHLISTE — noch nicht in Sammlung =====
+  { name:"Glow Serum Original", typ:"beauty", status:"wishlist", kat:"Gesichtspflege", emoji:"✨",
+    zutaten:"• 60 mL Tropfflasche\n• 60 mL Bio-Argan/Jojoba/Rosehip-Mix\n• 20 Tr. Frankincense\n• 8 Tr. Helichrysum\n• 5 Tr. Geranium",
+    zubereitung:"Trägeröle in Flasche, ätherische Öle dazugeben, schütteln. 24 Std. ziehen lassen.",
+    hinweise:"🌱 Wunschliste — Helichrysum noch nicht in Sammlung. Original-Version des bestehenden adaptierten Glow Serums." },
+
+  { name:"Sleepy Time Pillow Spray Original", typ:"beauty", status:"wishlist", kat:"Schlafritual", emoji:"😴",
+    zutaten:"• 100 mL Glas-Sprühflasche\n• 80 mL destilliertes Wasser\n• 15 mL Witch Hazel\n• 15 Tr. Lavender\n• 8 Tr. Roman Chamomile\n• 5 Tr. Clary Sage",
+    zubereitung:"Witch Hazel + ätherische Öle in Flasche, schütteln. Wasser auffüllen.",
+    hinweise:"🌱 Wunschliste — Roman Chamomile + Clary Sage noch nicht in Sammlung. Das ist das vollständige Originalrezept. ⚠️ Clary Sage NICHT in der Schwangerschaft." },
+
+  { name:"Lymph-Massageöl", typ:"beauty", status:"wishlist", kat:"Körperpflege", emoji:"💧",
+    zutaten:"• 100 mL Glas-Tropfflasche\n• 100 mL V-6 oder Mandelöl\n• 10 Tr. Juniper Berry\n• 10 Tr. Cypress\n• 8 Tr. Grapefruit\n• 5 Tr. Lemon",
+    zubereitung:"Trägeröl in Flasche, ätherische Öle dazu, schütteln. 24 Std. ziehen lassen.",
+    hinweise:"🌱 Wunschliste — Juniper Berry noch nicht in Sammlung. Sanft von unten nach oben Richtung Herz massieren. ⚠️ Juniper Berry NICHT in der Schwangerschaft. Photosensibilisierend." },
+
+  { name:"Babyhaut-Beruhigung", typ:"beauty", status:"wishlist", kat:"Familie", emoji:"👶",
+    zutaten:"• 30 mL Tropfflasche\n• 30 mL Bio-Mandelöl\n• 5 Tr. Roman Chamomile\n• 5 Tr. Lavender",
+    zubereitung:"Trägeröl in Flasche, ätherische Öle dazu, schütteln. 24 Std. ziehen lassen.",
+    hinweise:"🌱 Wunschliste — Roman Chamomile noch nicht in Sammlung. Sanft auf Babyhaut ab 6 Monate. Bei Babys erst Patch-Test." },
+
+  { name:"Spearmint Familien-Inhalation", typ:"beauty", status:"wishlist", kat:"Familie", emoji:"🌱",
+    zutaten:"• Kleine Schüssel\n• 500 mL warmes (nicht kochendes) Wasser\n• 2 Tr. Spearmint\n• 1 Tr. Lavender\n• Handtuch",
+    zubereitung:"Wasser in Schüssel, Öle hinzu, vorsichtig inhalieren. Augen geschlossen.",
+    hinweise:"🌱 Wunschliste — Spearmint noch nicht in Sammlung. Sanftere Variante zu Peppermint-Inhalationen, auch für Kinder ab 6." }
 ];
 
 // ===== DATA: WELLNESS-WISSEN =====
@@ -862,23 +1153,28 @@ function blendKatLabel(k) {
 }
 
 // ===== RENDER: ÖLLE =====
-let oelFilter='all', oelSearch='';
+let oelFilter='all', oelSearch='', oelStatus='owned';
 function renderOele() {
+  // Counts immer auf Gesamtbestand
+  document.getElementById('oelOwnedCount').textContent='('+oils.filter(o=>statusOf(o)==='owned').length+')';
+  document.getElementById('oelWishlistCount').textContent='('+oils.filter(o=>statusOf(o)==='wishlist').length+')';
   const t=oelSearch.toLowerCase();
   const f=oils.filter(o=>{
+    if(!passStatusFilter(o,oelStatus)) return false;
     const mf=oelFilter==='all'||o.tags.includes(oelFilter);
     const ms=!t||[o.name,o.aroma,o.wirkung,o.saison,o.zielgruppe,o.contentIdeen].some(x=>x.toLowerCase().includes(t));
     return mf&&ms;
   });
-  document.getElementById('oelInfo').textContent=f.length+' von '+oils.length+' Ölen';
+  const totalInStatus=oelStatus==='all'?oils.length:oils.filter(o=>statusOf(o)===oelStatus).length;
+  document.getElementById('oelInfo').textContent=f.length+' von '+totalInStatus+' Ölen';
   document.getElementById('oilGrid').innerHTML=f.length===0?'<div class="no-results">Kein Öl gefunden.</div>':f.map(o=>`
-    <div class="card" onclick="this.classList.toggle('expanded')">
+    <div class="card${cardWishlistClass(o)}" onclick="this.classList.toggle('expanded')">
       <div class="card-header">
         <div class="card-icon">${o.emoji}</div>
         <div class="card-title-wrap">
           <div class="card-name">${highlight(o.name,oelSearch)}</div>
           <div class="card-sub">${highlight(o.aroma,oelSearch)}</div>
-          <div class="card-tags">${o.tags.map(t=>`<span class="tag ${tagClass(t)}">${tagLabel(t)}</span>`).join('')}</div>
+          <div class="card-tags">${wishlistBadge(o)}${o.tags.map(t=>`<span class="tag ${tagClass(t)}">${tagLabel(t)}</span>`).join('')}</div>
         </div>
         <div class="card-toggle">▾</div>
       </div>
@@ -889,6 +1185,7 @@ function renderOele() {
         ${o.safety?`<div class="safety-note">⚠ ${o.safety}</div>`:''}
         <hr class="field-divider">
         <div class="field"><div class="field-label">Blends aus meiner Sammlung</div><div class="field-content">${o.blends.map(b=>`<span class="blend-chip">${b}</span>`).join('')}</div></div>
+        ${renderUsedIn(o.name)}
         <hr class="field-divider">
         <div class="field"><div class="field-label">Content-Ideen</div><div class="field-content">${highlight(o.contentIdeen,oelSearch)}</div></div>
         <hr class="field-divider">
@@ -907,26 +1204,43 @@ document.getElementById('oelFilters').addEventListener('click',e=>{
     renderOele();
   }
 });
+setupStatusBar('oelStatusBar', s => { oelStatus=s; renderOele(); });
+
+// ===== CROSS-REFERENCE: VERWENDET IN =====
+function renderUsedIn(oilName) {
+  const inBlends = blends.filter(b => b.oils.some(o => o.n === oilName));
+  const inRollons = rollons.filter(r => r.oils.some(o => o.n === oilName));
+  if (inBlends.length === 0 && inRollons.length === 0) return '';
+  const blendChips = inBlends.map(b => `<span class="cross-ref-chip${statusOf(b)==='wishlist'?' wishlist':''}">🌬️ ${b.name}</span>`).join('');
+  const rollonChips = inRollons.map(r => `<span class="cross-ref-chip${statusOf(r)==='wishlist'?' wishlist':''}">🌹 ${r.name}</span>`).join('');
+  return `<hr class="field-divider"><div class="field"><div class="field-label">Verwendet in (${inBlends.length+inRollons.length})</div><div class="cross-ref">${blendChips}${rollonChips}</div></div>`;
+}
+
 renderOele();
 
 // ===== RENDER: BLENDS =====
-let blendFilter='all', blendSearch='';
+let blendFilter='all', blendSearch='', blendStatus='owned';
 function renderBlends() {
+  document.getElementById('blendOwnedCount').textContent='('+blends.filter(o=>statusOf(o)==='owned').length+')';
+  document.getElementById('blendWishlistCount').textContent='('+blends.filter(o=>statusOf(o)==='wishlist').length+')';
   const t=blendSearch.toLowerCase();
   const f=blends.filter(b=>{
+    if(!passStatusFilter(b,blendStatus)) return false;
     const mf=blendFilter==='all'||b.kat===blendFilter;
     const ms=!t||[b.name,b.stimmung,b.beschreibung,b.hinweise,...b.oils.map(o=>o.n)].some(x=>String(x).toLowerCase().includes(t));
     return mf&&ms;
   });
-  document.getElementById('blendInfo').textContent=f.length+' von '+blends.length+' Blends';
+  const totalInStatus=blendStatus==='all'?blends.length:blends.filter(o=>statusOf(o)===blendStatus).length;
+  document.getElementById('blendInfo').textContent=f.length+' von '+totalInStatus+' Blends';
   document.getElementById('blendGrid').innerHTML=f.length===0?'<div class="no-results">Kein Blend gefunden.</div>':f.map(b=>`
-    <div class="card" onclick="this.classList.toggle('expanded')">
+    <div class="card${cardWishlistClass(b)}" onclick="this.classList.toggle('expanded')">
       <div class="card-header">
         <div class="card-icon">🌬️</div>
         <div class="card-title-wrap">
           <div class="card-name">${highlight(b.name,blendSearch)}</div>
           <div class="card-sub">${highlight(b.stimmung,blendSearch)}</div>
           <div class="card-tags">
+            ${wishlistBadge(b)}
             <span class="tag tag-season">${blendKatLabel(b.kat)}</span>
             <span class="tag tag-source">${b.quelle}</span>
           </div>
@@ -957,26 +1271,31 @@ document.getElementById('blendFilters').addEventListener('click',e=>{
     renderBlends();
   }
 });
+setupStatusBar('blendStatusBar', s => { blendStatus=s; renderBlends(); });
 renderBlends();
 
 // ===== RENDER: ROLL-ONS =====
-let rollonFilter='all', rollonSearch='';
+let rollonFilter='all', rollonSearch='', rollonStatus='owned';
 function renderRollons() {
+  document.getElementById('rollonOwnedCount').textContent='('+rollons.filter(o=>statusOf(o)==='owned').length+')';
+  document.getElementById('rollonWishlistCount').textContent='('+rollons.filter(o=>statusOf(o)==='wishlist').length+')';
   const t=rollonSearch.toLowerCase();
   const f=rollons.filter(r=>{
+    if(!passStatusFilter(r,rollonStatus)) return false;
     const mf=rollonFilter==='all'||r.kat===rollonFilter;
     const ms=!t||[r.name,r.beschreibung,r.anwendung,r.hinweise,...r.oils.map(o=>o.n)].some(x=>String(x).toLowerCase().includes(t));
     return mf&&ms;
   });
-  document.getElementById('rollonInfo').textContent=f.length+' von '+rollons.length+' Blends';
+  const totalInStatus=rollonStatus==='all'?rollons.length:rollons.filter(o=>statusOf(o)===rollonStatus).length;
+  document.getElementById('rollonInfo').textContent=f.length+' von '+totalInStatus+' Roll-ons';
   document.getElementById('rollonGrid').innerHTML=f.length===0?'<div class="no-results">Kein Roll-on gefunden.</div>':f.map(r=>`
-    <div class="card" onclick="this.classList.toggle('expanded')">
+    <div class="card${cardWishlistClass(r)}" onclick="this.classList.toggle('expanded')">
       <div class="card-header">
         <div class="card-icon">🌹</div>
         <div class="card-title-wrap">
           <div class="card-name">${highlight(r.name,rollonSearch)}</div>
           <div class="card-sub">${r.flasche} · ${r.traeger}</div>
-          <div class="card-tags"><span class="tag tag-use">${r.kat}</span></div>
+          <div class="card-tags">${wishlistBadge(r)}<span class="tag tag-use">${r.kat}</span></div>
         </div>
         <div class="card-toggle">▾</div>
       </div>
@@ -1005,26 +1324,31 @@ document.getElementById('rollonFilters').addEventListener('click',e=>{
     renderRollons();
   }
 });
+setupStatusBar('rollonStatusBar', s => { rollonStatus=s; renderRollons(); });
 renderRollons();
 
 // ===== RENDER: DIY =====
-let diyFilter='all', diySearch='';
+let diyFilter='all', diySearch='', diyStatus='owned';
 function renderDiy() {
+  document.getElementById('diyOwnedCount').textContent='('+diy.filter(o=>statusOf(o)==='owned').length+')';
+  document.getElementById('diyWishlistCount').textContent='('+diy.filter(o=>statusOf(o)==='wishlist').length+')';
   const t=diySearch.toLowerCase();
   const f=diy.filter(d=>{
+    if(!passStatusFilter(d,diyStatus)) return false;
     const mf=diyFilter==='all'||d.typ===diyFilter;
     const ms=!t||[d.name,d.kat,d.zutaten,d.zubereitung,d.hinweise].some(x=>String(x).toLowerCase().includes(t));
     return mf&&ms;
   });
-  document.getElementById('diyInfo').textContent=f.length+' von '+diy.length+' Rezepten';
+  const totalInStatus=diyStatus==='all'?diy.length:diy.filter(o=>statusOf(o)===diyStatus).length;
+  document.getElementById('diyInfo').textContent=f.length+' von '+totalInStatus+' Rezepten';
   document.getElementById('diyGrid').innerHTML=f.length===0?'<div class="no-results">Kein Rezept gefunden.</div>':f.map(d=>`
-    <div class="card" onclick="this.classList.toggle('expanded')">
+    <div class="card${cardWishlistClass(d)}" onclick="this.classList.toggle('expanded')">
       <div class="card-header">
         <div class="card-icon">${d.emoji}</div>
         <div class="card-title-wrap">
           <div class="card-name">${highlight(d.name,diySearch)}</div>
           <div class="card-sub">${d.kat}</div>
-          <div class="card-tags"><span class="tag ${d.typ==='beauty'?'tag-mood':'tag-use'}">${d.typ==='beauty'?'Beauty & Pflege':'Reinigung & Haushalt'}</span></div>
+          <div class="card-tags">${wishlistBadge(d)}<span class="tag ${d.typ==='beauty'?'tag-mood':'tag-use'}">${d.typ==='beauty'?'Beauty & Pflege':'Reinigung & Haushalt'}</span></div>
         </div>
         <div class="card-toggle">▾</div>
       </div>
@@ -1045,6 +1369,7 @@ document.getElementById('diyFilters').addEventListener('click',e=>{
     renderDiy();
   }
 });
+setupStatusBar('diyStatusBar', s => { diyStatus=s; renderDiy(); });
 renderDiy();
 
 // ===== RENDER: WISSEN =====
